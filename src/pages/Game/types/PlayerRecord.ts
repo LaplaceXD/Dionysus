@@ -4,7 +4,9 @@ export type PlayerRecord = {
   token: {
     Icon: IconType;
     size: number;
-    color: string;
+    bgColor: string;
+    textColor: string;
   };
   value: number;
+  name: string;
 };

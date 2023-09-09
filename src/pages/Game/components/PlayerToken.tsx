@@ -17,7 +17,7 @@ function PlayerToken({
   return (
     <forPlayer.token.Icon
       size={forPlayer.token.size * scale}
-      className={clsx(isColored && `text-${forPlayer.token.color}`, className)}
+      className={clsx(isColored && forPlayer.token.textColor, className)}
     />
   );
 }
