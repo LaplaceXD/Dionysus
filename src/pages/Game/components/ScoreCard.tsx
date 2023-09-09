@@ -14,8 +14,8 @@ function ScoreCard({ label, value, className }: ScoreCardProps) {
         className
       )}
     >
-      <span className="text-sm">{label}</span>
-      <span className="font-bold text-xl mt-[-4px]">{value}</span>
+      <span className="sm:text-lg text-sm">{label}</span>
+      <span className="font-bold sm:text-3xl text-xl mt-[-4px]">{value}</span>
     </li>
   );
 }

@@ -110,14 +110,14 @@ function Game() {
 
   return (
     <main className="flex justify-center items-center w-screen h-screen bg-gray-900">
-      <article className="sm:w-[400px] w-[400px] flex flex-col gap-6">
+      <div className="sm:w-[624px] w-[400px] flex flex-col gap-6">
         <header className="flex justify-between">
           <div className="flex items-center">
             <PlayerToken forPlayer={PLAYER.X} isColored />
             <PlayerToken forPlayer={PLAYER.Y} isColored />
           </div>
 
-          <p className="bg-gray-800 text-gray-500 px-4 py-1 text-lg rounded-md font-bold uppercase flex items-center gap-1 shadow-md shadow-gray-800/50">
+          <p className="bg-gray-800 text-gray-500 px-4 py-1 sm:text-2xl sm:gap-2 gap-1 text-lg rounded-md font-bold uppercase flex items-center shadow-md shadow-gray-800/50">
             <PlayerToken
               forPlayer={player === PLAYER.X ? PLAYER.X : PLAYER.Y}
             />
@@ -162,7 +162,7 @@ function Game() {
             />
           </ul>
         </footer>
-      </article>
+      </div>
     </main>
   );
 }

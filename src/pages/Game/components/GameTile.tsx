@@ -10,12 +10,16 @@ interface GameTileProps {
 function GameTile({ onClick, disabled, pressedBy }: GameTileProps) {
   return (
     <button
-      className="flex items-center justify-center rounded-lg bg-gray-800 shadow-lg shadow-gray-800/50"
+      className="flex items-center justify-center rounded-lg bg-gray-800 shadow-lg shadow-gray-800/50 p-8"
       onClick={onClick}
       disabled={disabled}
     >
       {pressedBy && (
-        <PlayerToken forPlayer={pressedBy} scale={2.75} isColored />
+        <PlayerToken
+          forPlayer={pressedBy}
+          isColored
+          className="w-full h-full"
+        />
       )}
     </button>
   );
