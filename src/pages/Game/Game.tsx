@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 
-import { PlayerToken, ScoreCard } from "@/pages/Game/components";
+import { GameTile, PlayerToken, ScoreCard } from "@/pages/Game/components";
 import { PlayerRecord } from "@/pages/Game/types";
 import { FaRegCircle, FaXmark } from "react-icons/fa6";
 import { TbReload } from "react-icons/tb";
@@ -133,21 +133,13 @@ function Game() {
         </header>
 
         <section className="grid grid-rows-3 grid-cols-3 gap-4 aspect-square">
-          {grid.map((value, i) => (
-            <button
+          {grid.map((pressedBy, i) => (
+            <GameTile
               key={i}
-              className="flex items-center justify-center rounded-lg bg-gray-800 shadow-lg shadow-gray-800/50"
               onClick={() => handleGameTileClick(i)}
-              disabled={value !== PLAYER.NONE || winner !== PLAYER.NONE}
-            >
-              {value !== PLAYER.NONE ? (
-                <PlayerToken
-                  forPlayer={value === PLAYER.X ? PLAYER.X : PLAYER.Y}
-                  scale={2.75}
-                  isColored
-                />
-              ) : null}
-            </button>
+              disabled={pressedBy !== PLAYER.NONE || winner !== PLAYER.NONE}
+              pressedBy={pressedBy}
+            />
           ))}
         </section>
 
