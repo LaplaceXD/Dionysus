@@ -29,6 +29,8 @@ const PLAYER = Object.freeze({
   },
 }) satisfies Readonly<Record<Players, PlayerRecord | null>>;
 
+const GRID_SIZE = 3;
+
 function Game() {
   const [winner, setWinner] = useState<PlayerRecord | null>(PLAYER.NONE);
   const [scores, setScores] = useState({
@@ -39,43 +41,42 @@ function Game() {
 
   const [player, setPlayer] = useState<PlayerRecord>(PLAYER.X);
   const [grid, setGrid] = useState<Array<PlayerRecord | null>>(
-    Array.from({ length: 9 }, () => PLAYER.NONE)
+    Array.from({ length: GRID_SIZE ** 2 }, () => PLAYER.NONE)
   );
 
   useEffect(() => {
-    const gridSize = 3;
     let row: number,
       col: number,
       sum: number = 0;
 
     // Check Horizontal Matches
-    for (row = 0; row < gridSize && Math.abs(sum) !== 3; ++row) {
+    for (row = 0; row < GRID_SIZE && Math.abs(sum) !== 3; ++row) {
       sum = 0;
-      for (col = 0; col < gridSize; ++col) {
-        sum += grid[row * gridSize + col]?.value ?? 0;
+      for (col = 0; col < GRID_SIZE; ++col) {
+        sum += grid[row * GRID_SIZE + col]?.value ?? 0;
       }
     }
 
     // Check Vertical Matches
-    for (col = 0; col < gridSize && Math.abs(sum) !== 3; ++col) {
+    for (col = 0; col < GRID_SIZE && Math.abs(sum) !== 3; ++col) {
       sum = 0;
-      for (row = 0; row < gridSize; ++row) {
-        sum += grid[row * gridSize + col]?.value ?? 0;
+      for (row = 0; row < GRID_SIZE; ++row) {
+        sum += grid[row * GRID_SIZE + col]?.value ?? 0;
       }
     }
 
     // Check Diagonal Matches
     if (Math.abs(sum) !== 3) {
       sum = 0;
-      for (row = 0; row < gridSize; ++row) {
-        sum += grid[row * gridSize + row]?.value ?? 0;
+      for (row = 0; row < GRID_SIZE; ++row) {
+        sum += grid[row * GRID_SIZE + row]?.value ?? 0;
       }
     }
 
     if (Math.abs(sum) !== 3) {
       sum = 0;
-      for (row = 0; row < gridSize; ++row) {
-        sum += grid[row * gridSize + gridSize - row - 1]?.value ?? 0;
+      for (row = 0; row < GRID_SIZE; ++row) {
+        sum += grid[row * GRID_SIZE + GRID_SIZE - row - 1]?.value ?? 0;
       }
     }
 
@@ -103,7 +104,7 @@ function Game() {
   );
 
   const handleGameReset = useCallback(() => {
-    setGrid(() => Array.from({ length: 9 }, () => PLAYER.NONE));
+    setGrid(() => Array.from({ length: GRID_SIZE ** 2 }, () => PLAYER.NONE));
     setWinner(PLAYER.NONE);
   }, [setGrid, setWinner]);
 
@@ -132,16 +133,16 @@ function Game() {
         </header>
 
         <section className="grid grid-rows-3 grid-cols-3 gap-4 aspect-square">
-          {grid.map((owner, i) => (
+          {grid.map((value, i) => (
             <button
               key={i}
               className="flex items-center justify-center rounded-lg bg-gray-800 shadow-lg shadow-gray-800/50"
               onClick={() => handleGameTileClick(i)}
-              disabled={owner !== PLAYER.NONE || winner !== PLAYER.NONE}
+              disabled={value !== PLAYER.NONE || winner !== PLAYER.NONE}
             >
-              {owner !== PLAYER.NONE ? (
+              {value !== PLAYER.NONE ? (
                 <PlayerToken
-                  forPlayer={owner === PLAYER.X ? PLAYER.X : PLAYER.Y}
+                  forPlayer={value === PLAYER.X ? PLAYER.X : PLAYER.Y}
                   scale={2.75}
                   isColored
                 />
