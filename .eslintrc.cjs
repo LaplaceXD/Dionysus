@@ -28,7 +28,6 @@ module.exports = {
     "no-await-in-loop": "error",
     "no-useless-catch": "error",
     "no-useless-return": "warn",
-    "no-nested-ternary": "error",
     "no-param-reassign": "error",
     "no-unneeded-ternary": "error",
     "react-refresh/only-export-components": [
