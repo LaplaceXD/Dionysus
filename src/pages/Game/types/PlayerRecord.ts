@@ -8,5 +8,4 @@ export type PlayerRecord = {
     textColor: string;
   };
   value: number;
-  name: string;
 };
