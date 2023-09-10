@@ -1,23 +1,36 @@
-import { PlayerRecord } from "@/pages/Game/types";
+import clsx from "clsx";
+
+import { PlayerRecord } from "@/pages/TicTacToe/types";
 import PlayerToken from "./PlayerToken";
 
 interface GameTileProps {
   onClick: () => void;
   disabled?: boolean;
+  isInverted?: boolean;
   pressedBy?: PlayerRecord | null;
 }
 
-function GameTile({ onClick, disabled, pressedBy }: GameTileProps) {
+function GameTile({
+  onClick,
+  pressedBy,
+  disabled = false,
+  isInverted = false,
+}: GameTileProps) {
   return (
     <button
-      className="flex items-center justify-center rounded-lg bg-gray-800 shadow-lg shadow-gray-800/50 p-8"
+      className={clsx(
+        "flex items-center justify-center rounded-lg p-8",
+        isInverted
+          ? pressedBy?.token.bgColor
+          : "bg-gray-800 shadow-lg shadow-gray-800/50"
+      )}
       onClick={onClick}
       disabled={disabled}
     >
       {pressedBy && (
         <PlayerToken
           forPlayer={pressedBy}
-          isColored
+          isColored={!isInverted}
           className="w-full h-full"
         />
       )}

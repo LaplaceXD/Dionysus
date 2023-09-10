@@ -43,49 +43,65 @@ function Game() {
   const [grid, setGrid] = useState<Array<PlayerRecord | null>>(
     Array.from({ length: GRID_SIZE ** 2 }, () => PLAYER.NONE)
   );
+  const [matchedIdxs, setMatchedIdxs] = useState<Array<number>>([]);
 
   useEffect(() => {
     let row: number,
       col: number,
-      sum: number = 0;
+      sum: number = 0,
+      matchedIdxs: Array<number> = [];
 
     // Check Horizontal Matches
     for (row = 0; row < GRID_SIZE && Math.abs(sum) !== 3; ++row) {
       sum = 0;
+      matchedIdxs = [];
+
       for (col = 0; col < GRID_SIZE; ++col) {
-        sum += grid[row * GRID_SIZE + col]?.value ?? 0;
+        matchedIdxs.push(row * GRID_SIZE + col);
+        sum += grid[matchedIdxs[matchedIdxs.length - 1]!]?.value ?? 0;
       }
     }
 
     // Check Vertical Matches
     for (col = 0; col < GRID_SIZE && Math.abs(sum) !== 3; ++col) {
       sum = 0;
+      matchedIdxs = [];
+
       for (row = 0; row < GRID_SIZE; ++row) {
-        sum += grid[row * GRID_SIZE + col]?.value ?? 0;
+        matchedIdxs.push(row * GRID_SIZE + col);
+        sum += grid[matchedIdxs[matchedIdxs.length - 1]!]?.value ?? 0;
       }
     }
 
     // Check Diagonal Matches
     if (Math.abs(sum) !== 3) {
       sum = 0;
+      matchedIdxs = [];
+
       for (row = 0; row < GRID_SIZE; ++row) {
-        sum += grid[row * GRID_SIZE + row]?.value ?? 0;
+        matchedIdxs.push(row * GRID_SIZE + row);
+        sum += grid[matchedIdxs[matchedIdxs.length - 1]!]?.value ?? 0;
       }
     }
 
     if (Math.abs(sum) !== 3) {
       sum = 0;
+      matchedIdxs = [];
+
       for (row = 0; row < GRID_SIZE; ++row) {
-        sum += grid[row * GRID_SIZE + GRID_SIZE - row - 1]?.value ?? 0;
+        matchedIdxs.push(row * GRID_SIZE + GRID_SIZE - row - 1);
+        sum += grid[matchedIdxs[matchedIdxs.length - 1]!]?.value ?? 0;
       }
     }
 
     if (sum === 3) {
       setWinner(PLAYER.X);
       setScores((scores) => ({ ...scores, xwins: scores.xwins + 1 }));
+      setMatchedIdxs(matchedIdxs);
     } else if (sum === -3) {
       setWinner(PLAYER.Y);
       setScores((scores) => ({ ...scores, owins: scores.owins + 1 }));
+      setMatchedIdxs(matchedIdxs);
     } else if (grid.every((v) => v !== PLAYER.NONE)) {
       setScores((scores) => ({ ...scores, ties: scores.ties + 1 }));
     }
@@ -106,6 +122,7 @@ function Game() {
   const handleGameReset = useCallback(() => {
     setGrid(() => Array.from({ length: GRID_SIZE ** 2 }, () => PLAYER.NONE));
     setWinner(PLAYER.NONE);
+    setMatchedIdxs([]);
   }, [setGrid, setWinner]);
 
   return (
@@ -147,6 +164,7 @@ function Game() {
               onClick={() => handleGameTileClick(i)}
               disabled={pressedBy !== PLAYER.NONE || winner !== PLAYER.NONE}
               pressedBy={pressedBy}
+              isInverted={matchedIdxs.includes(i)}
             />
           ))}
         </section>
