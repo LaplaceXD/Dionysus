@@ -5,6 +5,7 @@ import { TbReload } from "react-icons/tb";
 
 import { GameTile, PlayerToken, ScoreCard } from "@/pages/TicTacToe/components";
 import { PlayerRecord } from "@/pages/TicTacToe/types";
+import clsx from "clsx";
 import { Link } from "react-router-dom";
 
 type Players = "NONE" | "X" | "Y";
@@ -143,11 +144,25 @@ function TicTacToe() {
               <PlayerToken forPlayer={PLAYER.Y} isColored />
             </div>
 
-            <p className="flex-1 justify-center bg-gray-800 text-gray-500 px-4 py-1 sm:text-2xl sm:gap-2 gap-1 text-lg rounded-md font-bold uppercase flex items-center shadow-md shadow-gray-800/50">
-              <PlayerToken
-                forPlayer={player === PLAYER.X ? PLAYER.X : PLAYER.Y}
-              />
-              Turn
+            <p
+              className={clsx(
+                "flex-1 justify-center bg-gray-800 px-4 py-1 sm:text-2xl sm:gap-2 gap-1 text-lg rounded-md font-bold uppercase flex items-center shadow-md shadow-gray-800/50",
+                winner === PLAYER.NONE
+                  ? "text-gray-500"
+                  : winner.token.textColor
+              )}
+            >
+              {winner === PLAYER.NONE ? (
+                <>
+                  <PlayerToken forPlayer={player} />
+                  Turn
+                </>
+              ) : (
+                <>
+                  <PlayerToken forPlayer={winner} />
+                  Wins
+                </>
+              )}
             </p>
 
             <menu className="flex flex-1 justify-end gap-2">
