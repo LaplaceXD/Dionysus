@@ -170,7 +170,7 @@ function TicTacToe() {
               )}
             </p>
 
-            <menu className="flex flex-1 justify-end gap-2">
+            <menu className="flex flex-1 justify-end gap-1 sm:gap-2">
               <li>
                 <button
                   className="p-3 bg-gray-400 text-gray-800 rounded-md shadow shadow-gray-400/50 hover:bg-white transition-colors duration-200"
