@@ -31,7 +31,7 @@ const PLAYER = Object.freeze({
 
 const GRID_SIZE = 3;
 
-function Game() {
+function TicTacToe() {
   const [winner, setWinner] = useState<PlayerRecord | null>(PLAYER.NONE);
   const [scores, setScores] = useState({
     ties: 0,
@@ -193,4 +193,4 @@ function Game() {
   );
 }
 
-export default Game;
+export default TicTacToe;
