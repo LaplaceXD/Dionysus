@@ -21,6 +21,7 @@ function Home() {
             image={tictactoe}
             title="TicTacToe"
             description="A fun little game of O and X."
+            to="tictactoe"
           />
         </li>
       </ul>
