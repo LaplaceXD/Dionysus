@@ -109,27 +109,35 @@ function Game() {
   }, [setGrid, setWinner]);
 
   return (
-    <main className="flex justify-center items-center w-screen h-screen bg-gray-900">
-      <div className="sm:w-[624px] w-[400px] flex flex-col gap-6">
-        <header className="flex justify-between">
-          <div className="flex items-center">
-            <PlayerToken forPlayer={PLAYER.X} isColored />
-            <PlayerToken forPlayer={PLAYER.Y} isColored />
-          </div>
+    <main className="flex justify-center items-center w-screen h-screen bg-gray-900 px-12">
+      <article className="sm:w-[624px] w-[400px] flex flex-col gap-6">
+        <header className="flex flex-col gap-4">
+          <h1 className="font-bold text-center text-6xl">
+            <span className={PLAYER.X.token.textColor}>Tic</span>
+            <span className="text-gray-300">Tac</span>
+            <span className={PLAYER.Y.token.textColor}>Toe</span>
+          </h1>
 
-          <p className="bg-gray-800 text-gray-500 px-4 py-1 sm:text-2xl sm:gap-2 gap-1 text-lg rounded-md font-bold uppercase flex items-center shadow-md shadow-gray-800/50">
-            <PlayerToken
-              forPlayer={player === PLAYER.X ? PLAYER.X : PLAYER.Y}
-            />
-            Turn
-          </p>
+          <section className="flex justify-between">
+            <div className="flex items-center">
+              <PlayerToken forPlayer={PLAYER.X} isColored />
+              <PlayerToken forPlayer={PLAYER.Y} isColored />
+            </div>
 
-          <button
-            className="p-3 bg-gray-300 text-gray-800 rounded-md shadow shadow-gray-300/50"
-            onClick={handleGameReset}
-          >
-            <TbReload size={24} />
-          </button>
+            <p className="bg-gray-800 text-gray-500 px-4 py-1 sm:text-2xl sm:gap-2 gap-1 text-lg rounded-md font-bold uppercase flex items-center shadow-md shadow-gray-800/50">
+              <PlayerToken
+                forPlayer={player === PLAYER.X ? PLAYER.X : PLAYER.Y}
+              />
+              Turn
+            </p>
+
+            <button
+              className="p-3 bg-gray-300 text-gray-800 rounded-md shadow shadow-gray-300/50"
+              onClick={handleGameReset}
+            >
+              <TbReload size={24} />
+            </button>
+          </section>
         </header>
 
         <section className="grid grid-rows-3 grid-cols-3 gap-4 aspect-square">
@@ -162,7 +170,7 @@ function Game() {
             />
           </ul>
         </footer>
-      </div>
+      </article>
     </main>
   );
 }
