@@ -19,7 +19,7 @@ function GameTile({
   return (
     <button
       className={clsx(
-        "flex items-center justify-center rounded-lg p-8",
+        "flex items-center justify-center rounded-lg p-8 transition-colors duration-300",
         isInverted
           ? pressedBy?.token.bgColor
           : "bg-gray-800 shadow-lg shadow-gray-800/50"

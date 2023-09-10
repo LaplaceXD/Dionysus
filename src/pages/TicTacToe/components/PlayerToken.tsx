@@ -1,5 +1,6 @@
-import { PlayerRecord } from "@/pages/Game/types";
 import clsx from "clsx";
+
+import { PlayerRecord } from "@/pages/TicTacToe/types";
 
 interface PlayerTokenProps {
   forPlayer: PlayerRecord;
@@ -17,7 +18,11 @@ function PlayerToken({
   return (
     <forPlayer.token.Icon
       size={forPlayer.token.size * scale}
-      className={clsx(isColored && forPlayer.token.textColor, className)}
+      className={clsx(
+        isColored && forPlayer.token.textColor,
+        "transition-colors duation-300",
+        className
+      )}
     />
   );
 }
