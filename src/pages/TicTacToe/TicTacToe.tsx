@@ -130,7 +130,7 @@ function TicTacToe() {
   }, [setGrid, setWinner]);
 
   return (
-    <main className="flex justify-center items-center min-h-screen">
+    <main className="flex justify-center items-center min-h-[100dvh]">
       <article className="sm:w-[624px] w-[400px] flex flex-col gap-6">
         <header className="flex flex-col gap-4">
           <h1 className="font-bold text-center text-6xl">
