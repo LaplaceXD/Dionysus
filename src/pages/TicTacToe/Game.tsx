@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
-
-import { GameTile, PlayerToken, ScoreCard } from "@/pages/Game/components";
-import { PlayerRecord } from "@/pages/Game/types";
 import { FaRegCircle, FaXmark } from "react-icons/fa6";
 import { TbReload } from "react-icons/tb";
+
+import { GameTile, PlayerToken, ScoreCard } from "@/pages/TicTacToe/components";
+import { PlayerRecord } from "@/pages/TicTacToe/types";
 
 type Players = "NONE" | "X" | "Y";
 
