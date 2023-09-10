@@ -43,10 +43,11 @@ function TicTacToe() {
   });
 
   const [player, setPlayer] = useState<PlayerRecord>(PLAYER.X);
+  const [matchedIdxs, setMatchedIdxs] = useState<Array<number>>([]);
   const [grid, setGrid] = useState<Array<PlayerRecord | null>>(
     Array.from({ length: GRID_SIZE ** 2 }, () => PLAYER.NONE)
   );
-  const [matchedIdxs, setMatchedIdxs] = useState<Array<number>>([]);
+  const isTie = grid.every((v) => v !== PLAYER.NONE);
 
   useEffect(() => {
     let row: number,
@@ -105,10 +106,10 @@ function TicTacToe() {
       setWinner(PLAYER.Y);
       setScores((scores) => ({ ...scores, owins: scores.owins + 1 }));
       setMatchedIdxs(matchedIdxs);
-    } else if (grid.every((v) => v !== PLAYER.NONE)) {
+    } else if (isTie) {
       setScores((scores) => ({ ...scores, ties: scores.ties + 1 }));
     }
-  }, [grid, setWinner, setScores]);
+  }, [grid, setWinner, setScores, isTie]);
 
   const handleGameTileClick = useCallback(
     (idx: number) => {
@@ -147,12 +148,16 @@ function TicTacToe() {
             <p
               className={clsx(
                 "flex-1 justify-center bg-gray-800 px-4 py-1 sm:text-2xl sm:gap-2 gap-1 text-lg rounded-md font-bold uppercase flex items-center shadow-md shadow-gray-800/50",
-                winner === PLAYER.NONE
+                winner === PLAYER.NONE && isTie
+                  ? "text-gray-300"
+                  : winner === PLAYER.NONE
                   ? "text-gray-500"
                   : winner.token.textColor
               )}
             >
-              {winner === PLAYER.NONE ? (
+              {winner === PLAYER.NONE && isTie ? (
+                "Tie"
+              ) : winner === PLAYER.NONE ? (
                 <>
                   <PlayerToken forPlayer={player} />
                   Turn
