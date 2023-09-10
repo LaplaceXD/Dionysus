@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { FaRegCircle, FaXmark } from "react-icons/fa6";
+import { GoHome } from "react-icons/go";
 import { TbReload } from "react-icons/tb";
 
 import { GameTile, PlayerToken, ScoreCard } from "@/pages/TicTacToe/components";
 import { PlayerRecord } from "@/pages/TicTacToe/types";
+import { Link } from "react-router-dom";
 
 type Players = "NONE" | "X" | "Y";
 
@@ -136,24 +138,36 @@ function TicTacToe() {
           </h1>
 
           <section className="flex justify-between">
-            <div className="flex items-center">
+            <div className="flex flex-1 items-center">
               <PlayerToken forPlayer={PLAYER.X} isColored />
               <PlayerToken forPlayer={PLAYER.Y} isColored />
             </div>
 
-            <p className="bg-gray-800 text-gray-500 px-4 py-1 sm:text-2xl sm:gap-2 gap-1 text-lg rounded-md font-bold uppercase flex items-center shadow-md shadow-gray-800/50">
+            <p className="flex-1 justify-center bg-gray-800 text-gray-500 px-4 py-1 sm:text-2xl sm:gap-2 gap-1 text-lg rounded-md font-bold uppercase flex items-center shadow-md shadow-gray-800/50">
               <PlayerToken
                 forPlayer={player === PLAYER.X ? PLAYER.X : PLAYER.Y}
               />
               Turn
             </p>
 
-            <button
-              className="p-3 bg-gray-300 text-gray-800 rounded-md shadow shadow-gray-300/50"
-              onClick={handleGameReset}
-            >
-              <TbReload size={24} />
-            </button>
+            <menu className="flex flex-1 justify-end gap-2">
+              <li>
+                <button
+                  className="p-3 bg-gray-400 text-gray-800 rounded-md shadow shadow-gray-400/50 hover:bg-white transition-colors duration-200"
+                  onClick={handleGameReset}
+                >
+                  <TbReload size={24} />
+                </button>
+              </li>
+              <li>
+                <Link
+                  to="/"
+                  className="block p-3 bg-gray-400 text-gray-800 rounded-md shadow shadow-gray-400/50 hover:bg-white transition-colors duration-200"
+                >
+                  <GoHome size={24} />
+                </Link>
+              </li>
+            </menu>
           </section>
         </header>
 
@@ -169,7 +183,7 @@ function TicTacToe() {
           ))}
         </section>
 
-        <footer>
+        <footer className="flex flex-col gap-8">
           <ul className="flex gap-4">
             <ScoreCard
               label="X Wins"
