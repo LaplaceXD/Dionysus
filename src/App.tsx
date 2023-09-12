@@ -7,7 +7,11 @@ import { TicTacToe } from "@/pages/TicTacToe";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main><Outlet /></Main>,
+    element: (
+      <Main>
+        <Outlet />
+      </Main>
+    ),
     children: [
       {
         index: true,
