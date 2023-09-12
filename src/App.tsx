@@ -1,6 +1,6 @@
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
-import { Main } from "@/layout";
+import { PageContainer } from "@/layout";
 import { Home } from "@/pages/Home";
 import { TicTacToe } from "@/pages/TicTacToe";
 
@@ -8,9 +8,9 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <Main>
+      <PageContainer>
         <Outlet />
-      </Main>
+      </PageContainer>
     ),
     children: [
       {

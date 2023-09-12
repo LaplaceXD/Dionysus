@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 
-function Main({ children }: PropsWithChildren) {
+function PageContainer({ children }: PropsWithChildren) {
   return (
     <div className="min-w-[100dvw] min-h-[100dvh] bg-gray-900 px-12">
       {children}
@@ -8,4 +8,4 @@ function Main({ children }: PropsWithChildren) {
   );
 }
 
-export default Main;
+export default PageContainer;
