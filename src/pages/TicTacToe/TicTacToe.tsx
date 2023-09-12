@@ -131,15 +131,9 @@ function TicTacToe() {
 
   return (
     <main className="flex justify-center items-center min-h-[100dvh]">
-      <article className="sm:w-[624px] w-[400px] flex flex-col gap-6">
-        <header className="flex flex-col gap-4">
-          <h1 className="font-bold text-center text-6xl">
-            <span className={PLAYER.X.token.textColor}>Tic</span>
-            <span className="text-gray-300">Tac</span>
-            <span className={PLAYER.Y.token.textColor}>Toe</span>
-          </h1>
-
-          <section className="flex justify-between">
+      <div className="flex flex-col justify-center items-center lg:flex-row gap-16 max-w-[1024px]">
+        <aside className="flex flex-col gap-6 flex-1 lg:w-[628px] md:w-[512px] w-[400px]">
+          <header className="flex justify-center gap-4">
             <div className="flex flex-1 items-center">
               <PlayerToken forPlayer={PLAYER.X} isColored />
               <PlayerToken forPlayer={PLAYER.Y} isColored />
@@ -188,41 +182,56 @@ function TicTacToe() {
                 </Link>
               </li>
             </menu>
+          </header>
+
+          <section className="grid grid-rows-3 grid-cols-3 gap-4 aspect-square">
+            {grid.map((pressedBy, i) => (
+              <GameTile
+                key={i}
+                onClick={() => handleGameTileClick(i)}
+                disabled={pressedBy !== PLAYER.NONE || winner !== PLAYER.NONE}
+                pressedBy={pressedBy}
+                isInverted={matchedIdxs.includes(i)}
+              />
+            ))}
           </section>
-        </header>
 
-        <section className="grid grid-rows-3 grid-cols-3 gap-4 aspect-square">
-          {grid.map((pressedBy, i) => (
-            <GameTile
-              key={i}
-              onClick={() => handleGameTileClick(i)}
-              disabled={pressedBy !== PLAYER.NONE || winner !== PLAYER.NONE}
-              pressedBy={pressedBy}
-              isInverted={matchedIdxs.includes(i)}
-            />
-          ))}
-        </section>
+          <footer className="flex flex-col gap-8">
+            <ul className="flex gap-4">
+              <ScoreCard
+                label="X Wins"
+                value={scores.xwins}
+                className={PLAYER.X.token.bgColor}
+              />
+              <ScoreCard
+                label="Ties"
+                value={scores.ties}
+                className="bg-gray-300"
+              />
+              <ScoreCard
+                label="O Wins"
+                value={scores.owins}
+                className={PLAYER.Y.token.bgColor}
+              />
+            </ul>
+          </footer>
+        </aside>
 
-        <footer className="flex flex-col gap-8">
-          <ul className="flex gap-4">
-            <ScoreCard
-              label="X Wins"
-              value={scores.xwins}
-              className={PLAYER.X.token.bgColor}
-            />
-            <ScoreCard
-              label="Ties"
-              value={scores.ties}
-              className="bg-gray-300"
-            />
-            <ScoreCard
-              label="O Wins"
-              value={scores.owins}
-              className={PLAYER.Y.token.bgColor}
-            />
-          </ul>
-        </footer>
-      </article>
+        <article className="flex flex-col gap-2 sm:gap-4 flex-1 justify-center">
+          <h1 className="flex font-bold text-center text-3xl sm:text-5xl text-right w-full">
+            <span className={PLAYER.X.token.textColor}>Tic</span>
+            <span className="text-gray-300">Tac</span>
+            <span className={PLAYER.Y.token.textColor}>Toe</span>
+          </h1>
+
+          <p className="text-white">
+            Players take turns putting their marks in empty squares. The first
+            player to get 3 of her marks in a row (up, down, across, or
+            diagonally) is the winner. When all 9 squares are full, the game is
+            over. If no player has 3 marks in a row, the game ends in a tie.
+          </p>
+        </article>
+      </div>
     </main>
   );
 }
