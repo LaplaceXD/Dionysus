@@ -3,6 +3,7 @@ import { FaRegCircle, FaXmark } from "react-icons/fa6";
 import { GoHome } from "react-icons/go";
 import { TbReload } from "react-icons/tb";
 
+import { SectionLayout } from "@/layout";
 import { GameTile, PlayerToken, ScoreCard } from "@/pages/TicTacToe/components";
 import { PlayerRecord } from "@/pages/TicTacToe/types";
 import clsx from "clsx";
@@ -131,7 +132,17 @@ function TicTacToe() {
 
   return (
     <main className="flex justify-center items-center min-h-[100dvh]">
-      <div className="flex flex-col justify-center items-center lg:flex-row gap-16 max-w-[1024px]">
+      <SectionLayout
+        leadingTitle={false}
+        title={
+          <>
+            <span className={PLAYER.X.token.textColor}>Tic</span>
+            <span className="text-gray-300">Tac</span>
+            <span className={PLAYER.Y.token.textColor}>Toe</span>
+          </>
+        }
+        description="Players take turns putting their marks in empty squares. The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie."
+      >
         <aside className="flex flex-col gap-6 flex-1 lg:w-[628px] md:w-[512px] w-[400px]">
           <header className="flex justify-center gap-4">
             <div className="flex flex-1 items-center">
@@ -216,22 +227,7 @@ function TicTacToe() {
             </ul>
           </footer>
         </aside>
-
-        <article className="flex flex-col gap-2 sm:gap-4 flex-1 justify-center">
-          <h1 className="flex font-bold text-center text-3xl sm:text-5xl text-right w-full">
-            <span className={PLAYER.X.token.textColor}>Tic</span>
-            <span className="text-gray-300">Tac</span>
-            <span className={PLAYER.Y.token.textColor}>Toe</span>
-          </h1>
-
-          <p className="text-white">
-            Players take turns putting their marks in empty squares. The first
-            player to get 3 of her marks in a row (up, down, across, or
-            diagonally) is the winner. When all 9 squares are full, the game is
-            over. If no player has 3 marks in a row, the game ends in a tie.
-          </p>
-        </article>
-      </div>
+      </SectionLayout>
     </main>
   );
 }
