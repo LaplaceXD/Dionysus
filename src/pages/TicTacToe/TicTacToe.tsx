@@ -3,7 +3,7 @@ import { FaRegCircle, FaXmark } from "react-icons/fa6";
 import { GoHome } from "react-icons/go";
 import { TbReload } from "react-icons/tb";
 
-import { SectionLayout } from "@/layout";
+import { SectionLayout } from "@/layouts";
 import { GameTile, PlayerToken, ScoreCard } from "@/pages/TicTacToe/components";
 import { PlayerRecord } from "@/pages/TicTacToe/types";
 import clsx from "clsx";
@@ -133,7 +133,8 @@ function TicTacToe() {
   return (
     <main className="flex justify-center items-center min-h-[100dvh]">
       <SectionLayout
-        leadingTitle={false}
+        isHorizontal
+        endTitle
         title={
           <>
             <span className={PLAYER.X.token.textColor}>Tic</span>

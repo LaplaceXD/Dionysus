@@ -1,6 +1,6 @@
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
-import { PageContainer } from "@/layout";
+import { PageContainer } from "@/layouts";
 import { Home } from "@/pages/Home";
 import { TicTacToe } from "@/pages/TicTacToe";
 

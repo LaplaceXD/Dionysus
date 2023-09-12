@@ -1,6 +1,6 @@
 import tictactoe from "@/assets/tictactoe-thumbnail.png";
 import { GameCard } from "@/pages/Home/components";
-import { SectionLayout } from "@/layout";
+import { SectionLayout } from "@/layouts";
 
 function Home() {
   return (
