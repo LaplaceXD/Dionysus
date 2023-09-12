@@ -1,13 +1,13 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
-import { MainLayout } from "@/layout";
+import { Main } from "@/layout";
 import { Home } from "@/pages/Home";
 import { TicTacToe } from "@/pages/TicTacToe";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
+    element: <Main><Outlet /></Main>,
     children: [
       {
         index: true,
