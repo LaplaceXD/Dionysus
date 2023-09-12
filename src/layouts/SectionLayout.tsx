@@ -16,7 +16,7 @@ function SectionLayout({
   endTitle = false,
 }: PropsWithChildren<SectionLayoutProps>) {
   return (
-    <div className={clsx("flex flex-col justify-center items-center gap-16 max-w-[1024px]",
+    <div className={clsx("flex flex-col justify-center items-center gap-16 max-w-[1024px] w-[90%] m-auto",
     isHorizontal && "lg:flex-row")}>
       {endTitle ? children : null}
 

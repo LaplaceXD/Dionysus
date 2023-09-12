@@ -131,7 +131,7 @@ function TicTacToe() {
   }, [setGrid, setWinner]);
 
   return (
-    <main className="flex justify-center items-center min-h-[100dvh]">
+    <main className="flex justify-center items-center py-8 min-h-[100dvh]">
       <SectionLayout
         isHorizontal
         endTitle
@@ -144,7 +144,7 @@ function TicTacToe() {
         }
         description="Players take turns putting their marks in empty squares. The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie."
       >
-        <aside className="flex flex-col gap-6 flex-1 lg:w-[628px] md:w-[512px] w-[400px]">
+        <aside className="flex flex-col gap-6 flex-1 lg:max-w-[628px] md:max-w-[512px] max-w-[400px] w-full">
           <header className="flex justify-center gap-4">
             <div className="flex flex-1 items-center">
               <PlayerToken forPlayer={PLAYER.X} isColored />
