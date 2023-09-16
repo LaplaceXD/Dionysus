@@ -9,23 +9,31 @@ interface HamburgerMenuProps {
 
 function HamburgerMenu({ toggled, onToggle, className }: HamburgerMenuProps) {
   const lineStyle =
-    "absolute right-0 w-[32px] h-[4px] rounded-full bg-neutral-400 group-hover:bg-white transition-all duration-300";
+    "right-0 w-[32px] h-[4px] rounded-full bg-neutral-400 group-hover:bg-white transition-all duration-300";
 
   return (
     <div
       role="button"
       className={clsx(
-        "group relative hover:cursor-pointer md:hidden top-[-2px]",
+        "group relative hover:cursor-pointer md:hidden",
         className
       )}
       onClick={onToggle}
     >
       <div
-        className={clsx(lineStyle, "top-[-8px]", toggled && "rotate-45 top-0")}
+        className={clsx(
+          lineStyle,
+          "absolute top-[-8px]",
+          toggled && "rotate-45 top-0"
+        )}
       ></div>
       <div className={clsx(lineStyle, toggled && "opacity-0")}></div>
       <div
-        className={clsx(lineStyle, "top-[8px]", toggled && "-rotate-45 top-0")}
+        className={clsx(
+          lineStyle,
+          "absolute top-[8px]",
+          toggled && "-rotate-45 top-0"
+        )}
       ></div>
     </div>
   );
