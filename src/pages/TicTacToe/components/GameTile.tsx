@@ -22,7 +22,7 @@ function GameTile({
         "flex items-center justify-center rounded-lg p-8 transition-colors duration-300",
         isInverted
           ? pressedBy?.token.bgColor
-          : "bg-gray-800 shadow-lg shadow-gray-800/50"
+          : "bg-neutral-800 shadow-lg shadow-neutral-800/50"
       )}
       onClick={onClick}
       disabled={disabled}

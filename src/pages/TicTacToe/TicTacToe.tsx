@@ -18,8 +18,8 @@ const PLAYER = Object.freeze({
     token: {
       Icon: FaXmark,
       size: 28,
-      bgColor: "bg-cyan-300",
-      textColor: "text-cyan-300",
+      bgColor: "bg-secondary-400",
+      textColor: "text-secondary-400",
     },
   },
   Y: {
@@ -27,8 +27,8 @@ const PLAYER = Object.freeze({
     token: {
       Icon: FaRegCircle,
       size: 20,
-      bgColor: "bg-yellow-300",
-      textColor: "text-yellow-300",
+      bgColor: "bg-primary-500",
+      textColor: "text-primary-500",
     },
   },
 }) satisfies Readonly<Record<Players, PlayerRecord | null>>;
@@ -138,7 +138,7 @@ function TicTacToe() {
         title={
           <>
             <span className={PLAYER.X.token.textColor}>Tic</span>
-            <span className="text-gray-300">Tac</span>
+            <span className="text-neutral-300">Tac</span>
             <span className={PLAYER.Y.token.textColor}>Toe</span>
           </>
         }
@@ -153,11 +153,11 @@ function TicTacToe() {
 
             <p
               className={clsx(
-                "flex-1 justify-center bg-gray-800 px-4 py-1 sm:text-2xl sm:gap-2 gap-1 text-lg rounded-md font-bold uppercase flex items-center shadow-md shadow-gray-800/50",
+                "flex-1 justify-center bg-neutral-800 px-4 py-1 sm:text-2xl sm:gap-2 gap-1 text-lg rounded-md font-bold uppercase flex items-center shadow-md shadow-neutral-800/50",
                 winner === PLAYER.NONE && isTie
-                  ? "text-gray-300"
+                  ? "text-neutral-300"
                   : winner === PLAYER.NONE
-                  ? "text-gray-500"
+                  ? "text-neutral-500"
                   : winner.token.textColor
               )}
             >
@@ -179,7 +179,7 @@ function TicTacToe() {
             <menu className="flex flex-1 justify-end gap-1 sm:gap-2">
               <li>
                 <button
-                  className="p-3 bg-gray-400 text-gray-800 rounded-md shadow shadow-gray-400/50 hover:bg-white transition-colors duration-200"
+                  className="p-3 bg-neutral-300 text-neutral-800 rounded-md shadow shadow-neutral-400/50 hover:bg-white transition-colors duration-200"
                   onClick={handleGameReset}
                 >
                   <TbReload size={24} />
@@ -188,7 +188,7 @@ function TicTacToe() {
               <li>
                 <Link
                   to="/"
-                  className="block p-3 bg-gray-400 text-gray-800 rounded-md shadow shadow-gray-400/50 hover:bg-white transition-colors duration-200"
+                  className="block p-3 bg-neutral-300 text-neutral-800 rounded-md shadow shadow-neutral-400/50 hover:bg-white transition-colors duration-200"
                 >
                   <GoHome size={24} />
                 </Link>
@@ -218,7 +218,7 @@ function TicTacToe() {
               <ScoreCard
                 label="Ties"
                 value={scores.ties}
-                className="bg-gray-300"
+                className="bg-neutral-300"
               />
               <ScoreCard
                 label="O Wins"
