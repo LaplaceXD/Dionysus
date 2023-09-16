@@ -1,5 +1,5 @@
 {
-  "name": "retrogaming",
+  "name": "dionysus",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -39,3 +39,4 @@
     "husky": "^8.0.0"
   }
 }
+
