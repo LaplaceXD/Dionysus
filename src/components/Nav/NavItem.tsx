@@ -1,8 +1,9 @@
 import clsx from "clsx";
 import { PropsWithChildren } from "react";
-import { Link } from "react-router-dom";
+import { Link, To } from "react-router-dom";
 
 interface NavItemProps {
+  to: To;
   selected?: boolean;
   type?: "primary" | "secondary";
   className?: string;
@@ -12,6 +13,7 @@ function NavItem({
   children,
   selected,
   className,
+  to,
   type = "primary",
 }: PropsWithChildren<NavItemProps>) {
   const primary = clsx(
@@ -31,7 +33,7 @@ function NavItem({
 
   return (
     <Link
-      to="/"
+      to={to}
       className={clsx(
         "block w-full rounded-md py-2 px-4 font-bold text-sm sm:text-base transition-colors duration-200",
         type === "primary" && primary,
