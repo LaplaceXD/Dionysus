@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Children, PropsWithChildren, useState } from "react";
+import { Children, PropsWithChildren } from "react";
 
 interface HamburgerMenuProps {
   toggled: boolean;
@@ -39,12 +39,21 @@ function HamburgerMenu({ toggled, onToggle, className }: HamburgerMenuProps) {
   );
 }
 
-function NavBar({ children }: PropsWithChildren) {
-  const [open, setOpen] = useState<boolean>(false);
+interface NavBarProps {
+  open: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+}
 
+function NavBar({
+  open,
+  onOpen,
+  onClose,
+  children,
+}: PropsWithChildren<NavBarProps>) {
   return (
     <nav className="flex gap-3">
-      <HamburgerMenu toggled={open} onToggle={() => setOpen((open) => !open)} />
+      <HamburgerMenu toggled={open} onToggle={open ? onClose : onOpen} />
 
       <menu
         className={clsx(
@@ -57,7 +66,7 @@ function NavBar({ children }: PropsWithChildren) {
           <li key={i}>{child}</li>
         ))}
         <button
-          onClick={() => setOpen(false)}
+          onClick={onClose}
           className="btn btn-secondary font-bold md:hidden"
         >
           Close

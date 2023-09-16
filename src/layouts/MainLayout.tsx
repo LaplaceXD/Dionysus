@@ -1,9 +1,16 @@
-import { PropsWithChildren } from "react";
-import { Link } from "react-router-dom";
+import { PropsWithChildren, useEffect, useState } from "react";
+import { Link, useMatches } from "react-router-dom";
 
 import { NavBar, NavItem } from "@/components/Nav";
 
 function MainLayout({ children }: PropsWithChildren) {
+  const [navBarOpen, setNavBarOpen] = useState(false);
+  const matches = useMatches();
+
+  useEffect(() => {
+    setNavBarOpen(false);
+  }, [matches]);
+
   return (
     <>
       <header className="wrapper max-w-[1280px] pt-2 flex items-center justify-between gap-2">
@@ -14,11 +21,17 @@ function MainLayout({ children }: PropsWithChildren) {
           </span>
         </Link>
 
-        <NavBar>
-          <NavItem to="/" selected>
+        <NavBar
+          open={navBarOpen}
+          onOpen={() => setNavBarOpen(true)}
+          onClose={() => setNavBarOpen(false)}
+        >
+          <NavItem to="/" selected={matches[1]?.pathname === "/"}>
             Home
           </NavItem>
-          <NavItem to="/games">Games</NavItem>
+          <NavItem to="/games" selected={matches[1]?.pathname === "/games"}>
+            Games
+          </NavItem>
           <NavItem
             to="/donate"
             className="mt-6 md:mt-0 lg:ml-4"
