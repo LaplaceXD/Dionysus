@@ -36,10 +36,7 @@ function Home() {
             world of online games where you can play and connect with friends
             for unforgettable gaming experiences. Join the party now!
           </p>
-          <Link
-            to="/games"
-            className="text-sm md:text-base flex gap-2 items-center gradient-primary hover:shadow-lg hover:shadow-secondary-500/25 transition-all duration-200 active:translate-y-0.5 px-4 py-2 text-white rounded-md w-fill justify-center md:justify-start md:w-fit"
-          >
+          <Link to="/games" className="btn btn-primary w-fill md:w-fit">
             Browse Games <FaSearch />
           </Link>
         </article>

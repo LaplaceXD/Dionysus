@@ -14,6 +14,31 @@
     max-width: 1024px;
     margin: auto;
   }
+
+  .btn {
+    @apply text-sm md:text-base flex gap-1 md:gap-2 items-center transition-all duration-200 px-4 py-2 text-white rounded-md justify-center md:justify-start;
+  }
+
+  .btn.btn-primary {
+    @apply gradient-primary hover:shadow-lg hover:shadow-secondary-500/25 active:translate-y-0.5;
+  }
+
+  .btn.btn-secondary {
+    @apply hover:bg-neutral-700 active:bg-neutral-500;
+  }
+
+  .btn.btn-secondary.btn-active {
+    @apply bg-gradient-to-tr from-secondary-500 to-secondary-600 hover:cursor-default;
+  }
+
+  .btn.btn-accent {
+    @apply text-primary-400 hover:outline-primary-400 hover:outline hover:outline-2;
+  }
+
+  .btn.btn-accent:active,
+  .btn.btn-accent.btn-active {
+    @apply bg-gradient-to-tr from-primary-500 to-primary-600 hover:cursor-default;
+  }
 }
 
 @layer utilities {
