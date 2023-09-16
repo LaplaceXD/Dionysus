@@ -22,7 +22,7 @@ function Home() {
           <span className="motion-safe:animate-tada absolute text-6xl -top-24 left-28">
             🎉
           </span>
-          <span className="motion-safe:animate-tada absolute text-7xl bottom-16 right-0">
+          <span className="motion-safe:animate-tada absolute text-7xl bottom-16 right-0 invisible md:visible">
             🎉
           </span>
         </div>
