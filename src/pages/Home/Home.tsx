@@ -28,7 +28,7 @@ function Home() {
         </div>
 
         <article className="flex flex-col gap-8 col-span-12 md:col-span-5">
-          <h1 className="font-extrabold text-5xl md:text-6xl bg-gradient-to-r from-secondary-400 to-primary-500 bg-clip-text text-trasparent">
+          <h1 className="font-extrabold text-5xl md:text-6xl text-gradient-primary">
             Play Games with Friends!
           </h1>
           <p className="text-neutral-300 text-sm md:text-base">
@@ -38,7 +38,7 @@ function Home() {
           </p>
           <Link
             to="/games"
-            className="text-sm md:text-base flex gap-2 items-center bg-gradient-to-r from-secondary-500 to-primary-600 hover:shadow-lg hover:shadow-secondary-500/25 transition-all duration-200 active:translate-y-0.5 px-4 py-2 text-white rounded-md w-fill justify-center md:justify-start md:w-fit"
+            className="text-sm md:text-base flex gap-2 items-center gradient-primary hover:shadow-lg hover:shadow-secondary-500/25 transition-all duration-200 active:translate-y-0.5 px-4 py-2 text-white rounded-md w-fill justify-center md:justify-start md:w-fit"
           >
             Browse Games <FaSearch />
           </Link>

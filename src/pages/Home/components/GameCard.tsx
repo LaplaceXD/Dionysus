@@ -15,10 +15,10 @@ function GameCard({ image, title, description, to = null }: GameCardProps) {
         alt={title}
         className="object-cover rounded-lg w-fill aspect-[2/1] sm:aspect-[3/2] grayscale group-hover:grayscale-0 group-hover:shadow-2xl group-hover:shadow-secondary-500/20  transition-all duration-300"
       />
-      <h3 className="mt-6 font-bold text-xl md:text-2xl text-neutral-300 group-hover:bg-gradient-to-r group-hover:from-secondary-400 group-hover:to-primary-500 group-hover:bg-clip-text group-hover:text-trasparent trnsition-colors duration-300">
+      <h3 className="mt-6 font-bold text-xl md:text-2xl text-neutral-300 group-hover:text-gradient-primary">
         {title}
       </h3>
-      <p className="text-sm md:text-base text-neutral-300 group-hover:bg-gradient-to-r group-hover:from-secondary-400 group-hover:to-primary-500 group-hover:bg-clip-text group-hover:text-trasparent trnsition-colors duration-300">
+      <p className="text-sm md:text-base text-neutral-300 group-hover:text-gradient-primary">
         {description}
       </p>
       {to && <Link to={to} className="absolute w-full h-full bottom-0" />}

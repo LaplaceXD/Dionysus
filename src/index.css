@@ -15,3 +15,14 @@
     margin: auto;
   }
 }
+
+@layer utilities {
+  .gradient-primary {
+    @apply bg-gradient-to-r from-secondary-500 to-primary-600;
+  }
+
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-secondary-400 to-primary-500 bg-clip-text;
+    color: transparent;
+  }
+}
