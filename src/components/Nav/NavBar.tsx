@@ -48,7 +48,7 @@ function NavBar({ children }: PropsWithChildren) {
 
       <menu
         className={clsx(
-          "fixed z-10 w-[92.5vw] left-1/2 -translate-x-1/2 translate-y-0 bottom-4 bg-neutral-800 rounded-lg p-4 flex flex-col transition-transform duration-300 shadow-xl shadow-neutral-950/50",
+          "fixed z-10 w-[92.5vw] left-1/2 -translate-x-1/2 translate-y-0 bottom-4 bg-neutral-800 rounded-lg p-4 flex flex-col transition-transform duration-300 shadow-xl shadow-neutral-950/50 md:shadow-none",
           "md:static md:w-auto md:flex-row md:bg-trasparent md:translate-x-0 md:gap-1 lg:gap-2 md:translate-y-0",
           !open && "translate-y-56"
         )}
