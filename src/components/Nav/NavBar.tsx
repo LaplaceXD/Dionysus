@@ -15,7 +15,7 @@ function HamburgerMenu({ toggled, onToggle, className }: HamburgerMenuProps) {
     <div
       role="button"
       className={clsx(
-        "group relative hover:cursor-pointer md:hidden",
+        "group relative hover:cursor-pointer md:hidden top-[-2px]",
         className
       )}
       onClick={onToggle}
