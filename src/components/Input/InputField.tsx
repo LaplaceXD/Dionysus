@@ -76,7 +76,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
             className={clsx(
               "bg-neutral-700/40 focus:outline-white  p-2 w-full rounded-lg text-sm md:text-base",
               loading && "invisible",
-              disabled && "text-neutral-300 bg-neutral-600"
+              disabled && "text-neutral-200 bg-neutral-500"
             )}
             aria-describedby={description ? fieldId + "-descriptor" : undefined}
             aria-errormessage={error ? fieldId + "-error" : undefined}
