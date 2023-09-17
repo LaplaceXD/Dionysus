@@ -7,7 +7,7 @@ function Donate() {
   const [image, setImage] = useState<File | null>(null);
 
   return (
-    <div className="wrapper grid grid-cols-12  items-center mt-16 md:mt-8 gap-y-16 pb-8 md:gap-12">
+    <div className="wrapper mt-16 grid  grid-cols-12 items-center gap-y-16 pb-8 md:mt-8 md:gap-12">
       <aside className="col-span-12 md:col-span-7">
         <form
           className="flex flex-col gap-4 md:gap-8"
@@ -25,9 +25,9 @@ function Donate() {
             }, 5000);
           }}
         >
-          <fieldset className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
+          <fieldset className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:gap-3">
             <ImageUpload
-              className="row-span-2 w-48 md:w-64 justify-self-center"
+              className="row-span-2 w-48 justify-self-center md:w-64"
               value={image}
               onChange={setImage}
               disabled={loading}
@@ -57,8 +57,8 @@ function Donate() {
             />
           </fieldset>
 
-          <fieldset className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3 bg-gradient-to-r from-secondary-500 to-primary-600 px-4 pb-6 rounded-lg">
-            <legend className="col-span-2 font-bold text-white text-2xl my-2">
+          <fieldset className="grid grid-cols-1 gap-2 rounded-lg bg-gradient-to-r from-secondary-500 to-primary-600 px-4 pb-6 sm:grid-cols-2 md:gap-3">
+            <legend className="col-span-2 my-2 text-2xl font-bold text-white">
               Donation
             </legend>
 
@@ -97,11 +97,11 @@ function Donate() {
             />
           </fieldset>
 
-          <menu className="flex flex-col-reverse md:flex-row gap-2 mt-4 md:mt-0">
+          <menu className="mt-4 flex flex-col-reverse gap-2 md:mt-0 md:flex-row">
             <li className="flex-1">
               <button
                 type="reset"
-                className="btn btn-secondary justify-center w-full"
+                className="btn btn-secondary w-full justify-center"
                 disabled={loading}
               >
                 Clear
@@ -111,7 +111,7 @@ function Donate() {
               <button
                 type="submit"
                 className={clsx(
-                  "btn btn-primary justify-center w-full",
+                  "btn btn-primary w-full justify-center",
                   loading && "gradient-shimmer animate-shimmer"
                 )}
                 disabled={loading}
@@ -123,11 +123,11 @@ function Donate() {
         </form>
       </aside>
 
-      <article className="flex flex-col gap-4 col-span-12 md:col-span-5 -order-1 md:order-1">
-        <h1 className="font-bold text-gradient-primary text-5xl text-center md:text-left">
+      <article className="-order-1 col-span-12 flex flex-col gap-4 md:order-1 md:col-span-5">
+        <h1 className="text-gradient-primary text-center text-5xl font-bold md:text-left">
           Toss a coin?
         </h1>
-        <p className="text-neutral-300 text-center md:text-left">
+        <p className="text-center text-neutral-300 md:text-left">
           Fuel the Festivities on Dionysus! Your donations keep the games
           lively, the music vibrant, and the revelry going strong. Join us in
           raising a digital toast to the spirit of Dionysus - your support makes

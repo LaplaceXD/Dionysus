@@ -9,19 +9,19 @@ interface GameCardProps {
 
 function GameCard({ image, title, description, to = null }: GameCardProps) {
   return (
-    <article className="relative group rounded-xl hover:cursor-pointer transition-all duration-300 pb-6">
+    <article className="group relative rounded-xl pb-6 transition-all duration-300 hover:cursor-pointer">
       <img
         src={image}
         alt={title}
-        className="object-cover rounded-lg w-fill aspect-[2/1] sm:aspect-[3/2] grayscale group-hover:grayscale-0 group-hover:shadow-2xl group-hover:shadow-secondary-500/20  transition-all duration-300"
+        className="w-fill aspect-[2/1] rounded-lg object-cover grayscale transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-secondary-500/20  group-hover:grayscale-0 sm:aspect-[3/2]"
       />
-      <h3 className="mt-6 font-bold text-xl md:text-2xl text-neutral-300 group-hover:text-gradient-primary">
+      <h3 className="group-hover:text-gradient-primary mt-6 text-xl font-bold text-neutral-300 md:text-2xl">
         {title}
       </h3>
-      <p className="text-sm md:text-base text-neutral-300 group-hover:text-gradient-primary">
+      <p className="group-hover:text-gradient-primary text-sm text-neutral-300 md:text-base">
         {description}
       </p>
-      {to && <Link to={to} className="absolute w-full h-full bottom-0" />}
+      {to && <Link to={to} className="absolute bottom-0 h-full w-full" />}
     </article>
   );
 }

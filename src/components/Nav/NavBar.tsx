@@ -24,7 +24,7 @@ function HamburgerMenu({ toggled, onToggle, className }: HamburgerMenuProps) {
         className={clsx(
           lineStyle,
           "absolute top-0",
-          toggled ? "rotate-45 translate-y-0" : "-translate-y-2"
+          toggled ? "translate-y-0 rotate-45" : "-translate-y-2"
         )}
       ></div>
       <div className={clsx(lineStyle, toggled && "opacity-0")}></div>
@@ -32,7 +32,7 @@ function HamburgerMenu({ toggled, onToggle, className }: HamburgerMenuProps) {
         className={clsx(
           lineStyle,
           "absolute top-0",
-          toggled ? "-rotate-45 translate-y-0" : "translate-y-2"
+          toggled ? "translate-y-0 -rotate-45" : "translate-y-2"
         )}
       ></div>
     </div>
@@ -57,8 +57,8 @@ function NavBar({
 
       <menu
         className={clsx(
-          "fixed z-10 w-[92.5vw] left-1/2 -translate-x-1/2 translate-y-0 bottom-4 bg-neutral-800 rounded-lg p-4 flex flex-col transition-transform duration-300 shadow-xl shadow-neutral-950/50 md:shadow-none",
-          "md:static md:w-auto md:flex-row md:bg-trasparent md:translate-x-0 md:gap-1 lg:gap-2 md:translate-y-0",
+          "fixed bottom-4 left-1/2 z-10 flex w-[92.5vw] -translate-x-1/2 translate-y-0 flex-col rounded-lg bg-neutral-800 p-4 shadow-xl shadow-neutral-950/50 transition-transform duration-300 md:shadow-none",
+          "md:static md:w-auto md:translate-x-0 md:translate-y-0 md:flex-row md:gap-1 md:bg-trasparent lg:gap-2",
           !open && "translate-y-56"
         )}
       >
@@ -69,7 +69,7 @@ function NavBar({
         <li>
           <button
             onClick={onClose}
-            className="btn btn-secondary font-bold md:hidden w-full"
+            className="btn btn-secondary w-full font-bold md:hidden"
           >
             Close
           </button>

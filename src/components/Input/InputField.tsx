@@ -59,7 +59,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
     const fieldId = id + label?.replace(/\s+/g, "").toLowerCase() ?? "";
 
     return (
-      <div className={clsx("text-white flex flex-col gap-1", className)}>
+      <div className={clsx("flex flex-col gap-1 text-white", className)}>
         <label htmlFor={fieldId} className="text-sm">
           {label}
         </label>
@@ -74,9 +74,9 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
             ref={ref}
             id={fieldId}
             className={clsx(
-              "bg-neutral-700/40 focus:outline-white  p-2 w-full rounded-lg text-sm md:text-base",
+              "w-full rounded-lg bg-neutral-700/40 p-2 text-sm focus:outline-white md:text-base",
               loading && "invisible",
-              disabled && "text-neutral-200 bg-neutral-500"
+              disabled && "bg-neutral-500 text-neutral-200"
             )}
             aria-describedby={description ? fieldId + "-descriptor" : undefined}
             aria-errormessage={error ? fieldId + "-error" : undefined}
@@ -91,7 +91,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
         {description ? (
           <p
             id={fieldId + "-descriptor"}
-            className="text-xs md:text-sm text-neutral-300"
+            className="text-xs text-neutral-300 md:text-sm"
           >
             {description}
           </p>
@@ -100,7 +100,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
           <p
             role="alert"
             id={fieldId + "-error"}
-            className="text-xs md:text-sm text-error-400"
+            className="text-xs text-error-400 md:text-sm"
           >
             {error}
           </p>

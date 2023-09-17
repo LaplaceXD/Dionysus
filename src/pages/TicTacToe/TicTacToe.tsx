@@ -130,8 +130,8 @@ function TicTacToe() {
   }, [setGrid, setWinner]);
 
   return (
-    <div className="wrapper flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 mt-8 pb-8 md:mt-24 md:pb-24">
-      <aside className="flex flex-col gap-6 flex-1 lg:max-w-[628px] md:max-w-[512px] max-w-[400px] w-full">
+    <div className="wrapper mt-8 flex flex-col items-center justify-center gap-8 pb-8 md:mt-24 md:flex-row md:gap-16 md:pb-24">
+      <aside className="flex w-full max-w-[400px] flex-1 flex-col gap-6 md:max-w-[512px] lg:max-w-[628px]">
         <header className="flex justify-center gap-4">
           <div className="flex flex-1 items-center">
             <PlayerToken forPlayer={PLAYER.X} isColored />
@@ -140,7 +140,7 @@ function TicTacToe() {
 
           <p
             className={clsx(
-              "flex-1 justify-center bg-neutral-800 px-4 py-1 sm:text-2xl sm:gap-2 gap-1 text-lg rounded-md font-bold uppercase flex items-center shadow-md shadow-neutral-800/50",
+              "flex flex-1 items-center justify-center gap-1 rounded-md bg-neutral-800 px-4 py-1 text-lg font-bold uppercase shadow-md shadow-neutral-800/50 sm:gap-2 sm:text-2xl",
               winner === PLAYER.NONE && isTie
                 ? "text-neutral-300"
                 : winner === PLAYER.NONE
@@ -166,7 +166,7 @@ function TicTacToe() {
           <menu className="flex flex-1 justify-end gap-1 sm:gap-2">
             <li>
               <button
-                className="p-3 bg-neutral-300 text-neutral-800 rounded-md shadow shadow-neutral-400/50 hover:bg-white transition-colors duration-200"
+                className="rounded-md bg-neutral-300 p-3 text-neutral-800 shadow shadow-neutral-400/50 transition-colors duration-200 hover:bg-white"
                 onClick={handleGameReset}
               >
                 <TbReload size={24} />
@@ -175,7 +175,7 @@ function TicTacToe() {
             <li>
               <Link
                 to="/"
-                className="block p-3 bg-neutral-300 text-neutral-800 rounded-md shadow shadow-neutral-400/50 hover:bg-white transition-colors duration-200"
+                className="block rounded-md bg-neutral-300 p-3 text-neutral-800 shadow shadow-neutral-400/50 transition-colors duration-200 hover:bg-white"
               >
                 <GoHome size={24} />
               </Link>
@@ -183,7 +183,7 @@ function TicTacToe() {
           </menu>
         </header>
 
-        <div className="grid grid-rows-3 grid-cols-3 gap-4 aspect-square">
+        <div className="grid aspect-square grid-cols-3 grid-rows-3 gap-4">
           {grid.map((pressedBy, i) => (
             <GameTile
               key={i}
@@ -216,8 +216,8 @@ function TicTacToe() {
         </footer>
       </aside>
 
-      <article className="flex flex-col gap-2 sm:gap-4 flex-1 justify-center">
-        <h1 className="flex font-bold text-3xl sm:text-5xl text-right w-full">
+      <article className="flex flex-1 flex-col justify-center gap-2 sm:gap-4">
+        <h1 className="flex w-full text-right text-3xl font-bold sm:text-5xl">
           <span className={PLAYER.X.token.textColor}>Tic</span>
           <span className="text-neutral-300">Tac</span>
           <span className={PLAYER.Y.token.textColor}>Toe</span>

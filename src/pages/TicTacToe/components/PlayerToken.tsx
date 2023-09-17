@@ -20,7 +20,7 @@ function PlayerToken({
       size={forPlayer.token.size * scale}
       className={clsx(
         isColored && forPlayer.token.textColor,
-        "transition-colors duation-300",
+        "duation-300 transition-colors",
         className
       )}
     />

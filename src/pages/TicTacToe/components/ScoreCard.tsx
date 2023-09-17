@@ -10,12 +10,12 @@ function ScoreCard({ label, value, className }: ScoreCardProps) {
   return (
     <li
       className={clsx(
-        "flex flex-col items-center w-full rounded-lg text-neutral-800 px-2 py-1",
+        "flex w-full flex-col items-center rounded-lg px-2 py-1 text-neutral-800",
         className
       )}
     >
-      <span className="sm:text-lg text-sm">{label}</span>
-      <span className="font-bold sm:text-3xl text-xl mt-[-4px]">{value}</span>
+      <span className="text-sm sm:text-lg">{label}</span>
+      <span className="mt-[-4px] text-xl font-bold sm:text-3xl">{value}</span>
     </li>
   );
 }

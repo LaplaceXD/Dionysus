@@ -14,10 +14,10 @@ function MainLayout({ children }: PropsWithChildren) {
 
   return (
     <>
-      <header className="wrapper max-w-[1280px] pt-2 flex items-center justify-between gap-2">
-        <Link to="/" className="group font-bold text-3xl md:text-4xl">
+      <header className="wrapper flex max-w-[1280px] items-center justify-between gap-2 pt-2">
+        <Link to="/" className="group text-3xl font-bold md:text-4xl">
           🎉{" "}
-          <span className="text-white group-hover:text-gradient-primary transition-colors duration-200">
+          <span className="group-hover:text-gradient-primary text-white transition-colors duration-200">
             Dionysus
           </span>
         </Link>

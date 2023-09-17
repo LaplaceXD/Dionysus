@@ -6,31 +6,31 @@ import { GameCard } from "./components";
 function Home() {
   return (
     <>
-      <div className="wrapper mt-40 grid grid-cols-12 gap-y-32 md:gap-8 items-center overflow-x-clip">
-        <div className="relative col-span-12 md:col-span-7 text-center">
-          <span className="motion-safe:animate-pulse text-[25vw] md:text-[15vw] z-10">
+      <div className="wrapper mt-40 grid grid-cols-12 items-center gap-y-32 overflow-x-clip md:gap-8">
+        <div className="relative col-span-12 text-center md:col-span-7">
+          <span className="z-10 text-[25vw] motion-safe:animate-pulse md:text-[15vw]">
             🥳
           </span>
-          <span className="motion-safe:animate-spin absolute text-5xl">🎊</span>
-          <span className="motion-safe:animate-tada absolute text-5xl -bottom-24 left-52">
+          <span className="absolute text-5xl motion-safe:animate-spin">🎊</span>
+          <span className="absolute -bottom-24 left-52 text-5xl motion-safe:animate-tada">
             🎉
           </span>
-          <span className="motion-safe:animate-spin absolute text-6xl bottom-0 left-0">
+          <span className="absolute bottom-0 left-0 text-6xl motion-safe:animate-spin">
             🎊
           </span>
-          <span className="motion-safe:animate-tada absolute text-6xl -top-24 left-28">
+          <span className="absolute -top-24 left-28 text-6xl motion-safe:animate-tada">
             🎉
           </span>
-          <span className="motion-safe:animate-tada absolute text-7xl bottom-16 right-0 invisible md:visible">
+          <span className="invisible absolute bottom-16 right-0 text-7xl motion-safe:animate-tada md:visible">
             🎉
           </span>
         </div>
 
-        <article className="flex flex-col gap-8 col-span-12 md:col-span-5">
-          <h1 className="font-extrabold text-5xl md:text-6xl text-gradient-primary">
+        <article className="col-span-12 flex flex-col gap-8 md:col-span-5">
+          <h1 className="text-gradient-primary text-5xl font-extrabold md:text-6xl">
             Play Games with Friends!
           </h1>
-          <p className="text-neutral-300 text-sm md:text-base">
+          <p className="text-sm text-neutral-300 md:text-base">
             Welcome to Dionysus - Your Gateway to Multiplayer Fun! Dive into a
             world of online games where you can play and connect with friends
             for unforgettable gaming experiences. Join the party now!
@@ -41,19 +41,19 @@ function Home() {
         </article>
       </div>
 
-      <div className="bg-neutral-950 mt-24 md:mt-64 py-24">
+      <div className="mt-24 bg-neutral-950 py-24 md:mt-64">
         <article className="wrapper flex flex-col gap-8">
-          <h2 className="text-neutral-300 font-bold text-4xl text-center">
+          <h2 className="text-center text-4xl font-bold text-neutral-300">
             😲 Most Played Games
           </h2>
-          <p className="text-neutral-300 text-sm md:text-base text-center">
+          <p className="text-center text-sm text-neutral-300 md:text-base">
             Explore the Best: Check out our top-played games! These are the
             absolute favorites among our players, offering non-stop fun and
             competition. Join in and see why they're the best!
           </p>
 
           <div>
-            <ul className="grid grid-cols-1 sm:grid-cols-3 mt-8 gap-4">
+            <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
               <li>
                 <GameCard
                   image={tictactoe}

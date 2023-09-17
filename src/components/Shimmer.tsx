@@ -26,7 +26,7 @@ function Shimmer({
     <div className={clsx("relative", className)} {...props}>
       {children}
       {loading ? (
-        <div className="top-0 absolute gradient-shimmer animate-shimmer w-full h-full cursor-default">
+        <div className="gradient-shimmer absolute top-0 h-full w-full animate-shimmer cursor-default">
           {fallback}
         </div>
       ) : null}

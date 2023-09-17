@@ -31,7 +31,7 @@ function GameTile({
         <PlayerToken
           forPlayer={pressedBy}
           isColored={!isInverted}
-          className="w-full h-full"
+          className="h-full w-full"
         />
       )}
     </button>

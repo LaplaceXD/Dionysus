@@ -77,32 +77,32 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
           tabIndex={0}
           onKeyDown={handleKeyEnter}
           className={clsx(
-            "group aspect-square rounded-full overflow-clip transition-all duration-200",
+            "group aspect-square overflow-clip rounded-full transition-all duration-200",
             active
               ? "bg-neutral-700/40 text-neutral-300"
               : "bg-neutral-500 text-neutral-200",
             !value &&
               active &&
-              "hover:text-secondary-400 hover:border-secondary-400"
+              "hover:border-secondary-400 hover:text-secondary-400"
           )}
         >
           {value && !loading ? (
             <img
               src={URL.createObjectURL(value)}
-              className="object-cover aspect-square w-full object-center"
+              className="aspect-square w-full object-cover object-center"
             />
           ) : null}
 
           <label
             htmlFor={fieldId}
             className={clsx(
-              "absolute flex flex-col justify-center items-center gap-2 w-full h-full top-0 rounded-full text-sm md:text-base transition-all duration-200",
+              "absolute top-0 flex h-full w-full flex-col items-center justify-center gap-2 rounded-full text-sm transition-all duration-200 md:text-base",
               loading && "invisible",
               active && "hover:cursor-pointer",
               value && "opacity-0",
               value &&
                 active &&
-                "group-hover:bg-neutral-900/75 group-hover:opacity-100 group-hover:text-white"
+                "group-hover:bg-neutral-900/75 group-hover:text-white group-hover:opacity-100"
             )}
           >
             <input
@@ -128,12 +128,12 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
             />
             {value ? (
               <>
-                <FiEdit className="w-6 h-6 md:w-8 md:h-8" />
+                <FiEdit className="h-6 w-6 md:h-8 md:w-8" />
                 {editLabel}
               </>
             ) : (
               <>
-                <LuUpload className="w-6 h-6 md:w-8 md:h-8" />
+                <LuUpload className="h-6 w-6 md:h-8 md:w-8" />
                 {emptyLabel}
               </>
             )}
@@ -143,7 +143,7 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
         {description ? (
           <p
             id={fieldId + "-descriptor"}
-            className="text-xs md:text-sm text-neutral-300"
+            className="text-xs text-neutral-300 md:text-sm"
           >
             {description}
           </p>
@@ -153,7 +153,7 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
           <p
             role="alert"
             id={fieldId + "-error"}
-            className="text-xs md:text-sm text-error-400"
+            className="text-xs text-error-400 md:text-sm"
           >
             {error}
           </p>
