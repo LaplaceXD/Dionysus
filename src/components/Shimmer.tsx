@@ -1,20 +1,29 @@
 import clsx from "clsx";
-import { PropsWithChildren, ReactNode } from "react";
+import {
+  DetailedHTMLProps,
+  HTMLAttributes,
+  PropsWithChildren,
+  PropsWithoutRef,
+  ReactNode,
+} from "react";
 
-interface ShimmerProps {
-  fallback?: ReactNode;
-  className?: string;
+interface ShimmerProps
+  extends PropsWithoutRef<
+    DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+  > {
+  fallback?: ReactNode | null;
   loading?: boolean;
 }
 
 function Shimmer({
-  fallback,
   className,
   children,
+  fallback = null,
   loading = false,
+  ...props
 }: PropsWithChildren<ShimmerProps>) {
   return (
-    <div className={clsx("relative", className)}>
+    <div className={clsx("relative", className)} {...props}>
       {children}
       {loading ? (
         <div className="top-0 absolute gradient-shimmer animate-shimmer w-full h-full">
