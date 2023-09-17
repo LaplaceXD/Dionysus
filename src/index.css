@@ -50,4 +50,9 @@
     @apply bg-gradient-to-r from-secondary-400 to-primary-500 bg-clip-text;
     color: transparent;
   }
+
+  .gradient-shimmer {
+    @apply bg-gradient-to-r from-secondary-300 via-secondary-400 via-20% to-secondary-300 to-40% bg-repeat;
+    background-size: 800px 104px;
+  }
 }

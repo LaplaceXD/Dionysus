@@ -1,7 +1,7 @@
 import { PropsWithChildren, useEffect, useState } from "react";
 import { Link, useMatches } from "react-router-dom";
 
-import { NavBar, NavItem } from "@/components/Nav";
+import { NavBar, NavItem } from "@/components";
 
 function MainLayout({ children }: PropsWithChildren) {
   const [navBarOpen, setNavBarOpen] = useState(false);

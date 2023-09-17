@@ -11,6 +11,7 @@ export default {
       primary: colors.purple,
       secondary: colors.blue,
       accent: colors.fuchsia,
+      error: colors.red,
     },
     extend: {
       keyframes: {
@@ -26,9 +27,14 @@ export default {
             transform: "scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg)",
           },
         },
+        shimmer: {
+          "0%": { backgroundPosition: "-468px 0" },
+          "100%": { backgroundPosition: "468px 0" },
+        },
       },
       animation: {
         tada: "tada 1.5s ease-in-out infinite",
+        shimmer: "shimmer 1.5s forwards linear infinite",
       },
     },
   },
