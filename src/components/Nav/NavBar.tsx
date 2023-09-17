@@ -65,12 +65,15 @@ function NavBar({
         {Children.map(children, (child, i) => (
           <li key={i}>{child}</li>
         ))}
-        <button
-          onClick={onClose}
-          className="btn btn-secondary font-bold md:hidden"
-        >
-          Close
-        </button>
+
+        <li>
+          <button
+            onClick={onClose}
+            className="btn btn-secondary font-bold md:hidden"
+          >
+            Close
+          </button>
+        </li>
       </menu>
     </nav>
   );

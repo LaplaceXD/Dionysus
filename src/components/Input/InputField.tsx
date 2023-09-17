@@ -56,7 +56,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
     ref
   ) => {
     const id = useId();
-    const fieldId = id + label;
+    const fieldId = id + label?.replace(/\s+/g, "").toLowerCase() ?? "";
 
     return (
       <div className={clsx("text-white flex flex-col gap-1", className)}>

@@ -52,7 +52,7 @@ function Home() {
             competition. Join in and see why they're the best!
           </p>
 
-          <section>
+          <div>
             <ul className="grid grid-cols-1 sm:grid-cols-3 mt-8 gap-4">
               <li>
                 <GameCard
@@ -63,7 +63,7 @@ function Home() {
                 />
               </li>
             </ul>
-          </section>
+          </div>
         </article>
       </div>
     </>

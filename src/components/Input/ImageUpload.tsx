@@ -55,7 +55,7 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
     ref
   ) => {
     const uniquePrefix = useId();
-    const fieldId = uniquePrefix + id;
+    const fieldId = uniquePrefix + id?.replace(/\s+/g, "").toLowerCase() ?? "";
     const active = !disabled && !loading;
 
     const handleKeyEnter = useCallback(
@@ -75,7 +75,6 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
           loading={loading}
           fallback={loadingFallback}
           tabIndex={0}
-          role="button"
           onKeyDown={handleKeyEnter}
           className={clsx(
             "group aspect-square rounded-full overflow-clip transition-all duration-200",

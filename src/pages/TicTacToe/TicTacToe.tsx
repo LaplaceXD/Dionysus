@@ -183,7 +183,7 @@ function TicTacToe() {
           </menu>
         </header>
 
-        <section className="grid grid-rows-3 grid-cols-3 gap-4 aspect-square">
+        <div className="grid grid-rows-3 grid-cols-3 gap-4 aspect-square">
           {grid.map((pressedBy, i) => (
             <GameTile
               key={i}
@@ -193,7 +193,7 @@ function TicTacToe() {
               isInverted={matchedIdxs.includes(i)}
             />
           ))}
-        </section>
+        </div>
 
         <footer className="flex flex-col gap-8">
           <ul className="flex gap-4">
