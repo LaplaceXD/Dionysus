@@ -21,9 +21,12 @@ interface ImageUploadProps
     | "aria-required"
     | "aria-hidden"
     | "aria-invalid"
+    | "onChange"
+    | "value"
     | "type"
   > {
-  image?: File | null;
+  value?: File | null;
+  onChange?: (_image: File | null) => void | null;
   emptyLabel?: string;
   editLabel?: string;
   error?: string;
@@ -37,9 +40,10 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
     {
       id,
       className,
+      value = null,
+      onChange = null,
       emptyLabel = "Upload an image",
       editLabel = "Change image",
-      image = null,
       error = "",
       description = "",
       required = false,
@@ -77,14 +81,14 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
             disabled
               ? "bg-neutral-500 text-neutral-200"
               : "bg-neutral-700/40 text-neutral-300",
-            !image &&
+            !value &&
               !disabled &&
               "hover:text-secondary-400 hover:border-secondary-400"
           )}
         >
-          {image && !loading ? (
+          {value && !loading ? (
             <img
-              src={URL.createObjectURL(image)}
+              src={URL.createObjectURL(value)}
               className="object-cover aspect-square w-full object-center"
             />
           ) : null}
@@ -94,19 +98,24 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
             className={clsx(
               "absolute flex flex-col justify-center items-center gap-2 w-full h-full top-0 rounded-full transition-all duration-200",
               !disabled && "hover:cursor-pointer",
-              image && "opacity-0",
-              image &&
+              value && "opacity-0",
+              value &&
                 !disabled &&
                 "group-hover:bg-neutral-900/75 group-hover:opacity-100 group-hover:text-white"
             )}
           >
             <input
+              accept="value/*"
               {...props}
-              ref={ref}
               type="file"
-              id={fieldId}
               className="invisible h-0"
-              accept="image/*"
+              ref={ref}
+              id={fieldId}
+              value={value?.name}
+              onChange={(e) => {
+                onChange &&
+                  onChange((e.target.files && e.target.files[0]) || null);
+              }}
               aria-describedby={
                 description ? fieldId + "-descriptor" : undefined
               }
@@ -117,7 +126,7 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
               disabled={disabled}
               required={required}
             />
-            {image ? (
+            {value ? (
               <>
                 <FiEdit className="w-8 h-8" />
                 {editLabel}
