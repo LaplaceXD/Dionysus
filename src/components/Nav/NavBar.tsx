@@ -23,16 +23,16 @@ function HamburgerMenu({ toggled, onToggle, className }: HamburgerMenuProps) {
       <div
         className={clsx(
           lineStyle,
-          "absolute top-[-8px]",
-          toggled && "rotate-45 -top-1"
+          "absolute top-0",
+          toggled ? "rotate-45 translate-y-0" : "-translate-y-2"
         )}
       ></div>
       <div className={clsx(lineStyle, toggled && "opacity-0")}></div>
       <div
         className={clsx(
           lineStyle,
-          "absolute top-[8px]",
-          toggled && "-rotate-45 -top-1"
+          "absolute top-0",
+          toggled ? "-rotate-45 translate-y-0" : "translate-y-2"
         )}
       ></div>
     </div>
