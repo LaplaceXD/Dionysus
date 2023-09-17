@@ -24,7 +24,7 @@ function HamburgerMenu({ toggled, onToggle, className }: HamburgerMenuProps) {
         className={clsx(
           lineStyle,
           "absolute top-[-8px]",
-          toggled && "rotate-45 -top-0.5"
+          toggled && "rotate-45 -top-1"
         )}
       ></div>
       <div className={clsx(lineStyle, toggled && "opacity-0")}></div>
@@ -32,7 +32,7 @@ function HamburgerMenu({ toggled, onToggle, className }: HamburgerMenuProps) {
         className={clsx(
           lineStyle,
           "absolute top-[8px]",
-          toggled && "-rotate-45 -top-0.5"
+          toggled && "-rotate-45 -top-1"
         )}
       ></div>
     </div>
@@ -69,7 +69,7 @@ function NavBar({
         <li>
           <button
             onClick={onClose}
-            className="btn btn-secondary font-bold md:hidden"
+            className="btn btn-secondary font-bold md:hidden w-full"
           >
             Close
           </button>
