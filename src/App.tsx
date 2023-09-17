@@ -1,15 +1,18 @@
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
-import { BackgroundLayout } from "@/layouts";
+import { BackgroundLayout, MainLayout } from "@/layouts";
 import { Home } from "@/pages/Home";
 import { TicTacToe } from "@/pages/TicTacToe";
+import { Donate } from "@/pages/Donate";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <BackgroundLayout>
-        <Outlet />
+        <MainLayout>
+          <Outlet />
+        </MainLayout>
       </BackgroundLayout>
     ),
     children: [
@@ -20,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "tictactoe",
         element: <TicTacToe />,
+      },
+      {
+        path: "donate",
+        element: <Donate />,
       },
     ],
   },

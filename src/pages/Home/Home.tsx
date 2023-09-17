@@ -1,12 +1,11 @@
 import tictactoe from "@/assets/tictactoe-thumbnail.png";
-import { MainLayout } from "@/layouts";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { GameCard } from "./components";
 
 function Home() {
   return (
-    <MainLayout>
+    <>
       <div className="wrapper mt-40 grid grid-cols-12 gap-y-32 md:gap-8 items-center overflow-x-clip">
         <div className="relative col-span-12 md:col-span-7 text-center">
           <span className="motion-safe:animate-pulse text-[25vw] md:text-[15vw] z-10">
@@ -67,7 +66,7 @@ function Home() {
           </section>
         </article>
       </div>
-    </MainLayout>
+    </>
   );
 }
 
