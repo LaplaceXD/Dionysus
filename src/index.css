@@ -54,6 +54,5 @@
   .gradient-shimmer {
     @apply bg-secondary-300 bg-gradient-to-r from-trasparent via-secondary-400 via-20% to-trasparent to-40% bg-no-repeat;
     background-size: 800px 104px;
-    background-position: 0 0;
   }
 }
