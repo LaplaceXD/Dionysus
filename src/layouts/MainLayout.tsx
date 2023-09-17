@@ -8,6 +8,7 @@ function MainLayout({ children }: PropsWithChildren) {
   const matches = useMatches();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setNavBarOpen(false);
   }, [matches]);
 

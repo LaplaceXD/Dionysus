@@ -3,7 +3,6 @@ import { FaRegCircle, FaXmark } from "react-icons/fa6";
 import { GoHome } from "react-icons/go";
 import { TbReload } from "react-icons/tb";
 
-import { SectionLayout } from "@/layouts";
 import { GameTile, PlayerToken, ScoreCard } from "@/pages/TicTacToe/components";
 import { PlayerRecord } from "@/pages/TicTacToe/types";
 import clsx from "clsx";
@@ -131,105 +130,106 @@ function TicTacToe() {
   }, [setGrid, setWinner]);
 
   return (
-    <main className="flex justify-center items-center py-8 min-h-[100dvh]">
-      <SectionLayout
-        isHorizontal
-        endTitle
-        title={
-          <>
-            <span className={PLAYER.X.token.textColor}>Tic</span>
-            <span className="text-neutral-300">Tac</span>
-            <span className={PLAYER.Y.token.textColor}>Toe</span>
-          </>
-        }
-        description="Players take turns putting their marks in empty squares. The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie."
-      >
-        <aside className="flex flex-col gap-6 flex-1 lg:max-w-[628px] md:max-w-[512px] max-w-[400px] w-full">
-          <header className="flex justify-center gap-4">
-            <div className="flex flex-1 items-center">
-              <PlayerToken forPlayer={PLAYER.X} isColored />
-              <PlayerToken forPlayer={PLAYER.Y} isColored />
-            </div>
+    <div className="wrapper flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 mt-8 pb-8 md:mt-24 md:pb-24">
+      <aside className="flex flex-col gap-6 flex-1 lg:max-w-[628px] md:max-w-[512px] max-w-[400px] w-full">
+        <header className="flex justify-center gap-4">
+          <div className="flex flex-1 items-center">
+            <PlayerToken forPlayer={PLAYER.X} isColored />
+            <PlayerToken forPlayer={PLAYER.Y} isColored />
+          </div>
 
-            <p
-              className={clsx(
-                "flex-1 justify-center bg-neutral-800 px-4 py-1 sm:text-2xl sm:gap-2 gap-1 text-lg rounded-md font-bold uppercase flex items-center shadow-md shadow-neutral-800/50",
-                winner === PLAYER.NONE && isTie
-                  ? "text-neutral-300"
-                  : winner === PLAYER.NONE
-                  ? "text-neutral-500"
-                  : winner.token.textColor
-              )}
-            >
-              {winner === PLAYER.NONE && isTie ? (
-                "Tie"
-              ) : winner === PLAYER.NONE ? (
-                <>
-                  <PlayerToken forPlayer={player} />
-                  Turn
-                </>
-              ) : (
-                <>
-                  <PlayerToken forPlayer={winner} />
-                  Wins
-                </>
-              )}
-            </p>
+          <p
+            className={clsx(
+              "flex-1 justify-center bg-neutral-800 px-4 py-1 sm:text-2xl sm:gap-2 gap-1 text-lg rounded-md font-bold uppercase flex items-center shadow-md shadow-neutral-800/50",
+              winner === PLAYER.NONE && isTie
+                ? "text-neutral-300"
+                : winner === PLAYER.NONE
+                ? "text-neutral-500"
+                : winner.token.textColor
+            )}
+          >
+            {winner === PLAYER.NONE && isTie ? (
+              "Tie"
+            ) : winner === PLAYER.NONE ? (
+              <>
+                <PlayerToken forPlayer={player} />
+                Turn
+              </>
+            ) : (
+              <>
+                <PlayerToken forPlayer={winner} />
+                Wins
+              </>
+            )}
+          </p>
 
-            <menu className="flex flex-1 justify-end gap-1 sm:gap-2">
-              <li>
-                <button
-                  className="p-3 bg-neutral-300 text-neutral-800 rounded-md shadow shadow-neutral-400/50 hover:bg-white transition-colors duration-200"
-                  onClick={handleGameReset}
-                >
-                  <TbReload size={24} />
-                </button>
-              </li>
-              <li>
-                <Link
-                  to="/"
-                  className="block p-3 bg-neutral-300 text-neutral-800 rounded-md shadow shadow-neutral-400/50 hover:bg-white transition-colors duration-200"
-                >
-                  <GoHome size={24} />
-                </Link>
-              </li>
-            </menu>
-          </header>
+          <menu className="flex flex-1 justify-end gap-1 sm:gap-2">
+            <li>
+              <button
+                className="p-3 bg-neutral-300 text-neutral-800 rounded-md shadow shadow-neutral-400/50 hover:bg-white transition-colors duration-200"
+                onClick={handleGameReset}
+              >
+                <TbReload size={24} />
+              </button>
+            </li>
+            <li>
+              <Link
+                to="/"
+                className="block p-3 bg-neutral-300 text-neutral-800 rounded-md shadow shadow-neutral-400/50 hover:bg-white transition-colors duration-200"
+              >
+                <GoHome size={24} />
+              </Link>
+            </li>
+          </menu>
+        </header>
 
-          <section className="grid grid-rows-3 grid-cols-3 gap-4 aspect-square">
-            {grid.map((pressedBy, i) => (
-              <GameTile
-                key={i}
-                onClick={() => handleGameTileClick(i)}
-                disabled={pressedBy !== PLAYER.NONE || winner !== PLAYER.NONE}
-                pressedBy={pressedBy}
-                isInverted={matchedIdxs.includes(i)}
-              />
-            ))}
-          </section>
+        <section className="grid grid-rows-3 grid-cols-3 gap-4 aspect-square">
+          {grid.map((pressedBy, i) => (
+            <GameTile
+              key={i}
+              onClick={() => handleGameTileClick(i)}
+              disabled={pressedBy !== PLAYER.NONE || winner !== PLAYER.NONE}
+              pressedBy={pressedBy}
+              isInverted={matchedIdxs.includes(i)}
+            />
+          ))}
+        </section>
 
-          <footer className="flex flex-col gap-8">
-            <ul className="flex gap-4">
-              <ScoreCard
-                label="X Wins"
-                value={scores.xwins}
-                className={PLAYER.X.token.bgColor}
-              />
-              <ScoreCard
-                label="Ties"
-                value={scores.ties}
-                className="bg-neutral-300"
-              />
-              <ScoreCard
-                label="O Wins"
-                value={scores.owins}
-                className={PLAYER.Y.token.bgColor}
-              />
-            </ul>
-          </footer>
-        </aside>
-      </SectionLayout>
-    </main>
+        <footer className="flex flex-col gap-8">
+          <ul className="flex gap-4">
+            <ScoreCard
+              label="X Wins"
+              value={scores.xwins}
+              className={PLAYER.X.token.bgColor}
+            />
+            <ScoreCard
+              label="Ties"
+              value={scores.ties}
+              className="bg-neutral-300"
+            />
+            <ScoreCard
+              label="O Wins"
+              value={scores.owins}
+              className={PLAYER.Y.token.bgColor}
+            />
+          </ul>
+        </footer>
+      </aside>
+
+      <article className="flex flex-col gap-2 sm:gap-4 flex-1 justify-center">
+        <h1 className="flex font-bold text-3xl sm:text-5xl text-right w-full">
+          <span className={PLAYER.X.token.textColor}>Tic</span>
+          <span className="text-neutral-300">Tac</span>
+          <span className={PLAYER.Y.token.textColor}>Toe</span>
+        </h1>
+        <p className="text-white">
+          Players take turns putting their marks in empty squares. The first
+          player to get 3 of her marks in a row (up, down, across, or
+          diagonally) is the winner. When all 9 squares are full, the game is
+          over. If no player has 3 marks in a row, the game ends in a tie.
+        </p>
+      </article>
+    </div>
   );
 }
 
