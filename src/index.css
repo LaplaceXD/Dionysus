@@ -52,7 +52,7 @@
   }
 
   .gradient-shimmer {
-    @apply bg-secondary-300/75 bg-gradient-to-r from-trasparent via-secondary-400/75 via-20% to-trasparent to-40% bg-no-repeat;
-    background-size: 800px 104px;
+    @apply bg-secondary-300/90 bg-gradient-to-r from-trasparent via-secondary-400/90 via-20% to-trasparent to-40% bg-no-repeat;
+    background-size: 800px 100%;
   }
 }
