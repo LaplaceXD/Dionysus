@@ -20,11 +20,7 @@
   }
 
   .btn[disabled] {
-    @apply bg-none bg-neutral-500 text-neutral-300 pointer-events-none;
-  }
-
-  .btn.loading {
-    @apply bg-none gradient-shimmer animate-shimmer pointer-events-none;
+    @apply bg-none text-neutral-300 pointer-events-none;
   }
 
   .btn-primary {
