@@ -56,16 +56,17 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
   ) => {
     const uniquePrefix = useId();
     const fieldId = uniquePrefix + id;
+    const active = !disabled && !loading;
 
     const handleKeyEnter = useCallback(
       (e: KeyboardEvent<HTMLDivElement>) => {
-        if (e.key === "Enter" && !disabled) {
+        if (e.key === "Enter" && active) {
           (
             e.currentTarget.querySelector("#" + fieldId) as HTMLInputElement
           )?.click();
         }
       },
-      [fieldId, disabled]
+      [fieldId, active]
     );
 
     return (
@@ -78,11 +79,11 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
           onKeyDown={handleKeyEnter}
           className={clsx(
             "group aspect-square rounded-full overflow-clip transition-all duration-200",
-            disabled
-              ? "bg-neutral-500 text-neutral-200"
-              : "bg-neutral-700/40 text-neutral-300",
+            active
+              ? "bg-neutral-700/40 text-neutral-300"
+              : "bg-neutral-500 text-neutral-200",
             !value &&
-              !disabled &&
+              active &&
               "hover:text-secondary-400 hover:border-secondary-400"
           )}
         >
@@ -97,21 +98,21 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
             htmlFor={fieldId}
             className={clsx(
               "absolute flex flex-col justify-center items-center gap-2 w-full h-full top-0 rounded-full text-sm md:text-base transition-all duration-200",
-              !disabled && "hover:cursor-pointer",
+              loading && "invisible",
+              active && "hover:cursor-pointer",
               value && "opacity-0",
               value &&
-                !disabled &&
+                active &&
                 "group-hover:bg-neutral-900/75 group-hover:opacity-100 group-hover:text-white"
             )}
           >
             <input
-              accept="value/*"
+              accept="image/*"
               {...props}
               type="file"
               className="invisible h-0"
               ref={ref}
               id={fieldId}
-              value={value?.name}
               onChange={(e) => {
                 onChange &&
                   onChange((e.target.files && e.target.files[0]) || null);
