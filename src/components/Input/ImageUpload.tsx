@@ -96,7 +96,7 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
           <label
             htmlFor={fieldId}
             className={clsx(
-              "absolute flex flex-col justify-center items-center gap-2 w-full h-full top-0 rounded-full transition-all duration-200",
+              "absolute flex flex-col justify-center items-center gap-2 w-full h-full top-0 rounded-full text-sm md:text-base transition-all duration-200",
               !disabled && "hover:cursor-pointer",
               value && "opacity-0",
               value &&
@@ -128,12 +128,12 @@ const ImageUpload = forwardRef<HTMLInputElement, ImageUploadProps>(
             />
             {value ? (
               <>
-                <FiEdit className="w-8 h-8" />
+                <FiEdit className="w-6 h-6 md:w-8 md:h-8" />
                 {editLabel}
               </>
             ) : (
               <>
-                <LuUpload className="w-8 h-8" />
+                <LuUpload className="w-6 h-6 md:w-8 md:h-8" />
                 {emptyLabel}
               </>
             )}
