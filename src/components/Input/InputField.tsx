@@ -74,7 +74,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
             ref={ref}
             id={fieldId}
             className={clsx(
-              "bg-trasparent border-[1px] focus:outline-white border-neutral-300 p-2 w-full rounded-lg text-sm md:text-base",
+              "bg-neutral-700/40 focus:outline-white  p-2 w-full rounded-lg text-sm md:text-base",
               loading && "invisible",
               disabled && "text-neutral-300 bg-neutral-600"
             )}
