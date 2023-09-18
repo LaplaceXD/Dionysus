@@ -1,57 +1,105 @@
-import { ImageUpload, InputField } from "@/components";
+import { zodResolver } from "@hookform/resolvers/zod";
 import clsx from "clsx";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import {
+  Controller,
+  FieldValues,
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
+
+import { ImageUpload, InputField } from "@/components";
+import { z } from "zod";
+
+const donationFormSchema = z.object({
+  profileImg: z.any(),
+  name: z.string().min(2).max(64),
+  email: z.string().email(),
+  quote: z.string().min(2).max(128),
+  card: z.object({
+    number: z.string(),
+    holder: z.string(),
+    expiry: z.date({ coerce: true }),
+    cvv: z
+      .number({
+        coerce: true,
+      })
+      .min(100, "Invalid CVV number.")
+      .max(999, "Invalid CVV number."),
+  }),
+  amount: z.number({ coerce: true }),
+});
+
+type DonationFormSchema = z.infer<typeof donationFormSchema>;
 
 function Donate() {
+  const {
+    register,
+    reset,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<DonationFormSchema>({
+    resolver: zodResolver(donationFormSchema),
+  });
   const [loading, setLoading] = useState(false);
-  const [image, setImage] = useState<File | null>(null);
+
+  const handleFormSubmit = useCallback<SubmitHandler<FieldValues>>(() => {
+    setLoading(true);
+
+    setTimeout(() => {
+      reset();
+      setLoading(false);
+    }, 5000);
+  }, [reset, setLoading]);
 
   return (
     <div className="wrapper mt-16 grid  grid-cols-12 items-center gap-y-16 pb-8 md:mt-8 md:gap-12">
       <aside className="col-span-12 md:col-span-7">
         <form
           className="flex flex-col gap-4 md:gap-8"
-          onSubmit={(e) => {
-            e.preventDefault();
-
-            // const formData = new FormData(e.currentTarget);
-            // console.log(Object.fromEntries(formData.entries()));
-
-            setLoading(true);
-            setTimeout(() => {
-              setLoading(false);
-              // e.currentTarget.reset();
-              setImage(null);
-            }, 5000);
-          }}
+          onSubmit={handleSubmit(handleFormSubmit)}
         >
           <fieldset className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:gap-3">
-            <ImageUpload
-              className="row-span-2 w-48 justify-self-center md:w-64"
-              value={image}
-              onChange={setImage}
-              disabled={loading}
-              loading={loading}
+            <Controller
+              name="profileImg"
+              control={control}
+              render={({ field, fieldState: { error } }) => (
+                <ImageUpload
+                  {...field}
+                  className="row-span-2 w-48 justify-self-center md:w-64"
+                  error={error?.message}
+                  disabled={loading}
+                  loading={loading}
+                />
+              )}
             />
+
             <InputField
+              {...register("name", { required: true })}
               label="Name"
               type="text"
               description="This is the name that would be displayed on the donators section."
+              error={errors.name?.message?.toString()}
               disabled={loading}
               loading={loading}
             />
             <InputField
+              {...register("email")}
               label="Email"
               type="email"
               description="This will be used for verification purposes."
+              error={errors.email?.message?.toString()}
               disabled={loading}
               loading={loading}
             />
             <InputField
+              {...register("quote")}
               label="Quote"
               type="text"
               description="Short quote to showcase."
               className="sm:col-span-2"
+              error={errors.quote?.message?.toString()}
               disabled={loading}
               loading={loading}
             />
@@ -63,35 +111,45 @@ function Donate() {
             </legend>
 
             <InputField
+              {...register("card.number")}
               label="Card Number"
               type="text"
               className="sm:col-span-2"
+              error={errors.card?.number?.message?.toString()}
               disabled={loading}
               loading={loading}
             />
             <InputField
+              {...register("card.holder")}
               label="Cardholder Name"
               type="text"
               className="sm:col-span-2"
+              error={errors.card?.holder?.message?.toString()}
               disabled={loading}
               loading={loading}
             />
             <InputField
-              label="Date of Expiration"
-              type="date"
+              {...register("card.expiry")}
+              label="Date of Expiry"
+              type="month"
+              error={errors.card?.expiry?.message?.toString()}
               disabled={loading}
               loading={loading}
             />
             <InputField
+              {...register("card.cvv")}
               label="CVV"
               type="number"
+              error={errors.card?.cvv?.message?.toString()}
               disabled={loading}
               loading={loading}
             />
             <InputField
+              {...register("amount")}
               label="Amount"
               type="number"
               className="sm:col-span-2"
+              error={errors.amount?.message?.toString()}
               disabled={loading}
               loading={loading}
             />
@@ -101,6 +159,7 @@ function Donate() {
             <li className="flex-1">
               <button
                 type="reset"
+                onClick={() => reset()}
                 className="btn btn-secondary w-full justify-center"
                 disabled={loading}
               >
