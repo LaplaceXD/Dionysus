@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import clsx from "clsx";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import {
   Controller,
   FieldValues,
@@ -36,23 +36,19 @@ function Donate() {
     reset,
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors, isSubmitSuccessful },
   } = useForm<DonationFormSchema>({
     resolver: zodResolver(donationFormSchema),
   });
-  const [loading, setLoading] = useState(false);
 
   const handleFormSubmit = useCallback<SubmitHandler<FieldValues>>(() => {
-    setLoading(true);
-
     setTimeout(() => {
       reset();
-      setLoading(false);
     }, 5000);
-  }, [reset, setLoading]);
+  }, [reset]);
 
   return (
-    <div className="wrapper mt-16 grid  grid-cols-12 items-center gap-y-16 pb-8 md:mt-8 md:gap-12">
+    <div className="wrapper mt-16 grid grid-cols-12 items-center gap-y-16 pb-8 md:mt-8 md:gap-12">
       <aside className="col-span-12 md:col-span-7">
         <form
           className="flex flex-col gap-4 md:gap-8"
@@ -69,13 +65,13 @@ function Donate() {
                   className="row-span-2 w-48 justify-self-center md:w-64"
                   render={(fieldProps) => (
                     <Shimmer
-                      loading={loading}
+                      loading={isSubmitSuccessful}
                       className="overflow-clip rounded-full"
                     >
                       <ImageUpload
                         {...field}
                         {...fieldProps}
-                        disabled={loading}
+                        disabled={isSubmitSuccessful}
                       />
                     </Shimmer>
                   )}
@@ -89,13 +85,16 @@ function Donate() {
               description="This is the name that would be displayed on the donators section."
               error={errors.name?.message?.toString()}
               render={(field) => (
-                <Shimmer className="overflow-clip rounded-lg" loading={loading}>
+                <Shimmer
+                  className="overflow-clip rounded-lg"
+                  loading={isSubmitSuccessful}
+                >
                   <input
                     {...register("name")}
                     {...field}
                     type="text"
                     className="field"
-                    disabled={loading}
+                    disabled={isSubmitSuccessful}
                   />
                 </Shimmer>
               )}
@@ -106,13 +105,16 @@ function Donate() {
               description="This will be used for verification purposes."
               error={errors.email?.message?.toString()}
               render={(field) => (
-                <Shimmer className="overflow-clip rounded-lg" loading={loading}>
+                <Shimmer
+                  className="overflow-clip rounded-lg"
+                  loading={isSubmitSuccessful}
+                >
                   <input
                     {...register("email")}
                     {...field}
                     type="email"
                     className="field"
-                    disabled={loading}
+                    disabled={isSubmitSuccessful}
                   />
                 </Shimmer>
               )}
@@ -124,13 +126,16 @@ function Donate() {
               error={errors.quote?.message?.toString()}
               className="sm:col-span-2"
               render={(field) => (
-                <Shimmer className="overflow-clip rounded-lg" loading={loading}>
+                <Shimmer
+                  className="overflow-clip rounded-lg"
+                  loading={isSubmitSuccessful}
+                >
                   <input
                     {...register("quote")}
                     {...field}
                     type="text"
                     className="field"
-                    disabled={loading}
+                    disabled={isSubmitSuccessful}
                   />
                 </Shimmer>
               )}
@@ -148,13 +153,16 @@ function Donate() {
               error={errors.card?.number?.message?.toString()}
               className="sm:col-span-2"
               render={(field) => (
-                <Shimmer className="overflow-clip rounded-lg" loading={loading}>
+                <Shimmer
+                  className="overflow-clip rounded-lg"
+                  loading={isSubmitSuccessful}
+                >
                   <input
                     {...register("card.number")}
                     {...field}
                     type="text"
                     className="field"
-                    disabled={loading}
+                    disabled={isSubmitSuccessful}
                   />
                 </Shimmer>
               )}
@@ -165,13 +173,16 @@ function Donate() {
               error={errors.card?.holder?.message?.toString()}
               className="sm:col-span-2"
               render={(field) => (
-                <Shimmer className="overflow-clip rounded-lg" loading={loading}>
+                <Shimmer
+                  className="overflow-clip rounded-lg"
+                  loading={isSubmitSuccessful}
+                >
                   <input
                     {...register("card.holder")}
                     {...field}
                     type="text"
                     className="field"
-                    disabled={loading}
+                    disabled={isSubmitSuccessful}
                   />
                 </Shimmer>
               )}
@@ -181,13 +192,16 @@ function Donate() {
               label="Date of Expiry"
               error={errors.card?.expiry?.message?.toString()}
               render={(field) => (
-                <Shimmer className="overflow-clip rounded-lg" loading={loading}>
+                <Shimmer
+                  className="overflow-clip rounded-lg"
+                  loading={isSubmitSuccessful}
+                >
                   <input
                     {...register("card.expiry")}
                     {...field}
                     type="month"
                     className="field"
-                    disabled={loading}
+                    disabled={isSubmitSuccessful}
                   />
                 </Shimmer>
               )}
@@ -197,13 +211,16 @@ function Donate() {
               label="CVV"
               error={errors.card?.cvv?.message?.toString()}
               render={(field) => (
-                <Shimmer className="overflow-clip rounded-lg" loading={loading}>
+                <Shimmer
+                  className="overflow-clip rounded-lg"
+                  loading={isSubmitSuccessful}
+                >
                   <input
                     {...register("card.cvv")}
                     {...field}
                     type="number"
                     className="field"
-                    disabled={loading}
+                    disabled={isSubmitSuccessful}
                   />
                 </Shimmer>
               )}
@@ -214,13 +231,16 @@ function Donate() {
               error={errors.amount?.message?.toString()}
               className="sm:col-span-2"
               render={(field) => (
-                <Shimmer className="overflow-clip rounded-lg" loading={loading}>
+                <Shimmer
+                  className="overflow-clip rounded-lg"
+                  loading={isSubmitSuccessful}
+                >
                   <input
                     {...register("amount")}
                     {...field}
                     type="number"
                     className="field"
-                    disabled={loading}
+                    disabled={isSubmitSuccessful}
                   />
                 </Shimmer>
               )}
@@ -233,7 +253,7 @@ function Donate() {
                 type="reset"
                 onClick={() => reset()}
                 className="btn btn-secondary w-full justify-center"
-                disabled={loading}
+                disabled={isSubmitSuccessful}
               >
                 Clear
               </button>
@@ -243,9 +263,9 @@ function Donate() {
                 type="submit"
                 className={clsx(
                   "btn btn-primary w-full justify-center",
-                  loading && "gradient-shimmer animate-shimmer"
+                  isSubmitSuccessful && "gradient-shimmer animate-shimmer"
                 )}
-                disabled={loading}
+                disabled={isSubmitSuccessful}
               >
                 Submit
               </button>
