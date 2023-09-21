@@ -63,12 +63,23 @@ function Donate() {
               name="profileImg"
               control={control}
               render={({ field, fieldState: { error } }) => (
-                <ImageUpload
-                  {...field}
-                  className="row-span-2 w-48 justify-self-center md:w-64"
+                <Field
+                  id="profileImg"
                   error={error?.message}
-                  disabled={loading}
-                  loading={loading}
+                  className="row-span-2 w-48 justify-self-center md:w-64"
+                  render={(fieldProps) => (
+                    <Shimmer
+                      loading={loading}
+                      className="overflow-clip rounded-full"
+                    >
+                      <ImageUpload
+                        {...field}
+                        {...fieldProps}
+                        className={loading ? "invisible" : ""}
+                        disabled={loading}
+                      />
+                    </Shimmer>
+                  )}
                 />
               )}
             />
