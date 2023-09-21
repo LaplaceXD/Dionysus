@@ -14,7 +14,7 @@ type InputControlledProps = Pick<
 
 interface FieldProps {
   id: string;
-  render: (field: InputControlledProps) => ReactNode;
+  render: (_field: InputControlledProps) => ReactNode;
   label?: string;
   className?: string;
   description?: string;
@@ -33,7 +33,7 @@ function Field({
   const uniqueId = uniquePrefix + id;
 
   const fields = useMemo(() => {
-    const fields: InputControlledProps = { id };
+    const fields: InputControlledProps = { id: uniqueId };
 
     if (description) {
       fields["aria-describedby"] = uniqueId + "-descriptor";
@@ -49,9 +49,11 @@ function Field({
 
   return (
     <div className={clsx("flex flex-col gap-1 text-white", className)}>
-      <label htmlFor={uniqueId} className="text-sm">
-        {label}
-      </label>
+      {label ? (
+        <label htmlFor={uniqueId} className="text-sm">
+          {label}
+        </label>
+      ) : null}
 
       {render(fields)}
 
@@ -78,4 +80,3 @@ function Field({
 }
 
 export default Field;
-
