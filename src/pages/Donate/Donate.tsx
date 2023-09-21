@@ -8,7 +8,7 @@ import {
   useForm,
 } from "react-hook-form";
 
-import { ImageUpload, InputField } from "@/components";
+import { Field, ImageUpload, Shimmer } from "@/components";
 import { z } from "zod";
 
 const donationFormSchema = z.object({
@@ -17,13 +17,11 @@ const donationFormSchema = z.object({
   email: z.string().email(),
   quote: z.string().min(2).max(128),
   card: z.object({
-    number: z.string(),
-    holder: z.string(),
+    number: z.string().nonempty(),
+    holder: z.string().nonempty(),
     expiry: z.date({ coerce: true }),
     cvv: z
-      .number({
-        coerce: true,
-      })
+      .number({ coerce: true })
       .min(100, "Invalid CVV number.")
       .max(999, "Invalid CVV number."),
   }),
@@ -75,33 +73,57 @@ function Donate() {
               )}
             />
 
-            <InputField
-              {...register("name", { required: true })}
+            <Field
+              id="name"
               label="Name"
-              type="text"
               description="This is the name that would be displayed on the donators section."
               error={errors.name?.message?.toString()}
-              disabled={loading}
-              loading={loading}
+              render={(field) => (
+                <Shimmer className="overflow-clip rounded-lg" loading={loading}>
+                  <input
+                    {...register("name")}
+                    {...field}
+                    type="text"
+                    className={clsx("field", loading && "invisible")}
+                    disabled={loading}
+                  />
+                </Shimmer>
+              )}
             />
-            <InputField
-              {...register("email")}
+            <Field
+              id="email"
               label="Email"
-              type="email"
               description="This will be used for verification purposes."
               error={errors.email?.message?.toString()}
-              disabled={loading}
-              loading={loading}
+              render={(field) => (
+                <Shimmer className="overflow-clip rounded-lg" loading={loading}>
+                  <input
+                    {...register("email")}
+                    {...field}
+                    type="email"
+                    className={clsx("field", loading && "invisible")}
+                    disabled={loading}
+                  />
+                </Shimmer>
+              )}
             />
-            <InputField
-              {...register("quote")}
+            <Field
+              id="quote"
               label="Quote"
-              type="text"
-              description="Short quote to showcase."
-              className="sm:col-span-2"
+              description="Showcase a short quote."
               error={errors.quote?.message?.toString()}
-              disabled={loading}
-              loading={loading}
+              className="sm:col-span-2"
+              render={(field) => (
+                <Shimmer className="overflow-clip rounded-lg" loading={loading}>
+                  <input
+                    {...register("quote")}
+                    {...field}
+                    type="text"
+                    className={clsx("field", loading && "invisible")}
+                    disabled={loading}
+                  />
+                </Shimmer>
+              )}
             />
           </fieldset>
 
@@ -110,48 +132,88 @@ function Donate() {
               Donation
             </legend>
 
-            <InputField
-              {...register("card.number")}
+            <Field
+              id="card-number"
               label="Card Number"
-              type="text"
-              className="sm:col-span-2"
               error={errors.card?.number?.message?.toString()}
-              disabled={loading}
-              loading={loading}
+              className="sm:col-span-2"
+              render={(field) => (
+                <Shimmer className="overflow-clip rounded-lg" loading={loading}>
+                  <input
+                    {...register("card.number")}
+                    {...field}
+                    type="text"
+                    className={clsx("field", loading && "invisible")}
+                    disabled={loading}
+                  />
+                </Shimmer>
+              )}
             />
-            <InputField
-              {...register("card.holder")}
+            <Field
+              id="card-holder"
               label="Cardholder Name"
-              type="text"
-              className="sm:col-span-2"
               error={errors.card?.holder?.message?.toString()}
-              disabled={loading}
-              loading={loading}
-            />
-            <InputField
-              {...register("card.expiry")}
-              label="Date of Expiry"
-              type="month"
-              error={errors.card?.expiry?.message?.toString()}
-              disabled={loading}
-              loading={loading}
-            />
-            <InputField
-              {...register("card.cvv")}
-              label="CVV"
-              type="number"
-              error={errors.card?.cvv?.message?.toString()}
-              disabled={loading}
-              loading={loading}
-            />
-            <InputField
-              {...register("amount")}
-              label="Amount"
-              type="number"
               className="sm:col-span-2"
+              render={(field) => (
+                <Shimmer className="overflow-clip rounded-lg" loading={loading}>
+                  <input
+                    {...register("card.holder")}
+                    {...field}
+                    type="text"
+                    className={clsx("field", loading && "invisible")}
+                    disabled={loading}
+                  />
+                </Shimmer>
+              )}
+            />
+            <Field
+              id="card-expiry"
+              label="Date of Expiry"
+              error={errors.card?.expiry?.message?.toString()}
+              render={(field) => (
+                <Shimmer className="overflow-clip rounded-lg" loading={loading}>
+                  <input
+                    {...register("card.expiry")}
+                    {...field}
+                    type="month"
+                    className={clsx("field", loading && "invisible")}
+                    disabled={loading}
+                  />
+                </Shimmer>
+              )}
+            />
+            <Field
+              id="card-cvv"
+              label="CVV"
+              error={errors.card?.cvv?.message?.toString()}
+              render={(field) => (
+                <Shimmer className="overflow-clip rounded-lg" loading={loading}>
+                  <input
+                    {...register("card.cvv")}
+                    {...field}
+                    type="number"
+                    className={clsx("field", loading && "invisible")}
+                    disabled={loading}
+                  />
+                </Shimmer>
+              )}
+            />
+            <Field
+              id="amount"
+              label="Amount"
               error={errors.amount?.message?.toString()}
-              disabled={loading}
-              loading={loading}
+              className="sm:col-span-2"
+              render={(field) => (
+                <Shimmer className="overflow-clip rounded-lg" loading={loading}>
+                  <input
+                    {...register("amount")}
+                    {...field}
+                    type="number"
+                    className={clsx("field", loading && "invisible")}
+                    disabled={loading}
+                  />
+                </Shimmer>
+              )}
             />
           </fieldset>
 
