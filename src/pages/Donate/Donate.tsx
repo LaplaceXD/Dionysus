@@ -75,7 +75,6 @@ function Donate() {
                       <ImageUpload
                         {...field}
                         {...fieldProps}
-                        className={loading ? "invisible" : ""}
                         disabled={loading}
                       />
                     </Shimmer>
@@ -95,7 +94,7 @@ function Donate() {
                     {...register("name")}
                     {...field}
                     type="text"
-                    className={clsx("field", loading && "invisible")}
+                    className="field"
                     disabled={loading}
                   />
                 </Shimmer>
@@ -112,7 +111,7 @@ function Donate() {
                     {...register("email")}
                     {...field}
                     type="email"
-                    className={clsx("field", loading && "invisible")}
+                    className="field"
                     disabled={loading}
                   />
                 </Shimmer>
@@ -130,7 +129,7 @@ function Donate() {
                     {...register("quote")}
                     {...field}
                     type="text"
-                    className={clsx("field", loading && "invisible")}
+                    className="field"
                     disabled={loading}
                   />
                 </Shimmer>
@@ -154,7 +153,7 @@ function Donate() {
                     {...register("card.number")}
                     {...field}
                     type="text"
-                    className={clsx("field", loading && "invisible")}
+                    className="field"
                     disabled={loading}
                   />
                 </Shimmer>
@@ -171,7 +170,7 @@ function Donate() {
                     {...register("card.holder")}
                     {...field}
                     type="text"
-                    className={clsx("field", loading && "invisible")}
+                    className="field"
                     disabled={loading}
                   />
                 </Shimmer>
@@ -187,7 +186,7 @@ function Donate() {
                     {...register("card.expiry")}
                     {...field}
                     type="month"
-                    className={clsx("field", loading && "invisible")}
+                    className="field"
                     disabled={loading}
                   />
                 </Shimmer>
@@ -203,7 +202,7 @@ function Donate() {
                     {...register("card.cvv")}
                     {...field}
                     type="number"
-                    className={clsx("field", loading && "invisible")}
+                    className="field"
                     disabled={loading}
                   />
                 </Shimmer>
@@ -220,7 +219,7 @@ function Donate() {
                     {...register("amount")}
                     {...field}
                     type="number"
-                    className={clsx("field", loading && "invisible")}
+                    className="field"
                     disabled={loading}
                   />
                 </Shimmer>
