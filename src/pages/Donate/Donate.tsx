@@ -7,6 +7,7 @@ import {
   SubmitHandler,
   useForm,
 } from "react-hook-form";
+import { toast } from "react-toastify";
 import { z } from "zod";
 
 import { Field, ImageUpload, Shimmer } from "@/components";
@@ -28,9 +29,18 @@ function Donate() {
   });
 
   const handleFormSubmit = useCallback<SubmitHandler<FieldValues>>(() => {
-    setTimeout(() => {
-      reset();
-    }, 5000);
+    toast.promise(
+      async () => {
+        /* 5 seconds delay */
+        await new Promise((resolve) => setTimeout(resolve, 5000));
+        reset();
+      },
+      {
+        pending: "Tossing a coin...",
+        success: "Coin was received. Thank you! 👌",
+        error: "Coin was not received. 😭",
+      }
+    );
   }, [reset]);
 
   return (
