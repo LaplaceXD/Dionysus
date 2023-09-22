@@ -23,8 +23,8 @@ const games: Game[] = [
 ];
 
 export async function getGames() {
-  /* Sleep for 2.5 seconds */
-  await new Promise<void>((resolve) => setTimeout(() => resolve(), 2500));
+  /* Sleep for 1.5 seconds */
+  await new Promise<void>((resolve) => setTimeout(() => resolve(), 1500));
 
   return games;
 }
