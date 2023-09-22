@@ -40,7 +40,7 @@ function GameList({
       className={loading ? "opacity-50 transition-opacity duration-200" : ""}
     >
       {filteredGames.length === 0 && !skeleton ? (
-        <p className="mt-16 text-center text-4xl font-bold text-white">
+        <p className="mt-12 text-center text-2xl font-bold text-white md:mt-16 md:text-4xl">
           No games found. 😢
         </p>
       ) : (
