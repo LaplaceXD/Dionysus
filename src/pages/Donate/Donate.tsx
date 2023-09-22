@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import clsx from "clsx";
-import { useCallback } from "react";
+import { ChangeEvent, FocusEvent, useCallback } from "react";
 import {
   Controller,
   FieldValues,
@@ -18,6 +18,7 @@ function Donate() {
     reset,
     handleSubmit,
     control,
+    setValue,
     formState: { errors, isSubmitSuccessful },
   } = useForm<z.infer<typeof donationFormSchema>>({
     resolver: zodResolver(donationFormSchema),
@@ -202,7 +203,11 @@ function Donate() {
                   loading={isSubmitSuccessful}
                 >
                   <input
-                    {...register("card.cvv")}
+                    {...register("card.cvv", {
+                      onChange(e: ChangeEvent<HTMLInputElement>) {
+                        setValue("card.cvv", e.currentTarget.value.slice(0, 4));
+                      },
+                    })}
                     {...field}
                     type="number"
                     className="field"
@@ -222,8 +227,22 @@ function Donate() {
                   loading={isSubmitSuccessful}
                 >
                   <input
-                    {...register("amount")}
+                    {...register("amount", {
+                      onBlur(e: FocusEvent<HTMLInputElement, Element>) {
+                        const val: string = e.currentTarget.value;
+
+                        if (val.includes(".")) {
+                          const [int, frac] = val.split(".");
+
+                          setValue(
+                            "amount",
+                            parseFloat(int + "." + (frac?.slice(0, 2) ?? ""))
+                          );
+                        }
+                      },
+                    })}
                     {...field}
+                    step="any"
                     type="number"
                     className="field"
                     disabled={isSubmitSuccessful}
