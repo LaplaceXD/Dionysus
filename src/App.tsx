@@ -23,11 +23,16 @@ const router = createBrowserRouter([
       },
       {
         path: "games",
-        element: <Games />,
-      },
-      {
-        path: "tictactoe",
-        element: <TicTacToe />,
+        children: [
+          {
+            index: true,
+            element: <Games />,
+          },
+          {
+            path: "tictactoe",
+            element: <TicTacToe />,
+          },
+        ],
       },
       {
         path: "donate",

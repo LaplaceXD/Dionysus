@@ -16,7 +16,7 @@ const games: Game[] = [
     title: "TicTacToe",
     description: "A fun little game of O and X.",
     image: tictactoe,
-    to: "/tictactoe",
+    to: "/games/tictactoe",
     plays: 9000,
     playable: true,
   },
