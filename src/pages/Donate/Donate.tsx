@@ -7,28 +7,10 @@ import {
   SubmitHandler,
   useForm,
 } from "react-hook-form";
-
-import { Field, ImageUpload, Shimmer } from "@/components";
 import { z } from "zod";
 
-const donationFormSchema = z.object({
-  profileImg: z.any(),
-  name: z.string().min(2).max(64),
-  email: z.string().email(),
-  quote: z.string().min(2).max(128),
-  card: z.object({
-    number: z.string().nonempty(),
-    holder: z.string().nonempty(),
-    expiry: z.date({ coerce: true }),
-    cvv: z
-      .number({ coerce: true })
-      .min(100, "Invalid CVV number.")
-      .max(999, "Invalid CVV number."),
-  }),
-  amount: z.number({ coerce: true }),
-});
-
-type DonationFormSchema = z.infer<typeof donationFormSchema>;
+import { Field, ImageUpload, Shimmer } from "@/components";
+import { donationFormSchema } from "@/pages/Donate/validators";
 
 function Donate() {
   const {
@@ -37,8 +19,11 @@ function Donate() {
     handleSubmit,
     control,
     formState: { errors, isSubmitSuccessful },
-  } = useForm<DonationFormSchema>({
+  } = useForm<z.infer<typeof donationFormSchema>>({
     resolver: zodResolver(donationFormSchema),
+    defaultValues: {
+      amount: 1,
+    },
   });
 
   const handleFormSubmit = useCallback<SubmitHandler<FieldValues>>(() => {
@@ -62,7 +47,7 @@ function Donate() {
                 <Field
                   id="profileImg"
                   error={error?.message}
-                  className="row-span-2 w-48 justify-self-center md:w-64"
+                  className="row-span-2 w-full max-w-xs justify-self-center"
                   render={(fieldProps) => (
                     <Shimmer
                       loading={isSubmitSuccessful}
@@ -150,6 +135,7 @@ function Donate() {
             <Field
               id="card-number"
               label="Card Number"
+              description="Only accepts VISA (4111111111111111) or MasterCard (5555555555554444)."
               error={errors.card?.number?.message?.toString()}
               className="sm:col-span-2"
               render={(field) => (
