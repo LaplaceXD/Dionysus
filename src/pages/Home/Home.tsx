@@ -1,9 +1,17 @@
-import tictactoe from "@/assets/tictactoe-thumbnail.png";
-import { GameCard } from "@/pages/Games/components";
+import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
+import { getGames, type Game } from "@/pages/Games/api";
+import { GameList } from "@/pages/Games/components";
+
 function Home() {
+  const [games, setGames] = useState<Game[] | null>(null);
+
+  useEffect(() => {
+    getGames().then(setGames);
+  }, []);
+
   return (
     <>
       <div className="wrapper mt-40 grid grid-cols-12 items-center gap-y-32 overflow-x-clip md:gap-8">
@@ -52,16 +60,7 @@ function Home() {
             competition. Join in and see why they're the best!
           </p>
 
-          <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            <li>
-              <GameCard
-                image={tictactoe}
-                title="TicTacToe"
-                description="A fun little game of O and X."
-                to="tictactoe"
-              />
-            </li>
-          </ul>
+          <GameList games={games} skeleton={games === null ? 3 : 0} />
         </article>
       </div>
     </>
