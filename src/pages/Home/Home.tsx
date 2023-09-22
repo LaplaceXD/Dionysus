@@ -1,7 +1,7 @@
 import tictactoe from "@/assets/tictactoe-thumbnail.png";
+import { GameCard } from "@/pages/Games/components";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { GameCard } from "./components";
 
 function Home() {
   return (
@@ -52,18 +52,16 @@ function Home() {
             competition. Join in and see why they're the best!
           </p>
 
-          <div>
-            <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-              <li>
-                <GameCard
-                  image={tictactoe}
-                  title="TicTacToe"
-                  description="A fun little game of O and X."
-                  to="tictactoe"
-                />
-              </li>
-            </ul>
-          </div>
+          <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <li>
+              <GameCard
+                image={tictactoe}
+                title="TicTacToe"
+                description="A fun little game of O and X."
+                to="tictactoe"
+              />
+            </li>
+          </ul>
         </article>
       </div>
     </>

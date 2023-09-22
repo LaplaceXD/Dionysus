@@ -1,9 +1,10 @@
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
 import { BackgroundLayout, MainLayout } from "@/layouts";
+import { Donate } from "@/pages/Donate";
+import { Games } from "@/pages/Games";
 import { Home } from "@/pages/Home";
 import { TicTacToe } from "@/pages/TicTacToe";
-import { Donate } from "@/pages/Donate";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "games",
+        element: <Games />,
       },
       {
         path: "tictactoe",
