@@ -6,7 +6,9 @@ export const donationFormSchema = z.object({
     .instanceof(File)
     .optional()
     .refine((img) => {
-      return img ? /.(jpe?g|png)$/.test(img.name) : true;
+      return img
+        ? ["image/jpeg", "image/jpg", "image/png"].includes(img.type)
+        : true;
     }, "Image must be a jpeg, jpg, or png.")
     .refine((img) => {
       const twoMB = 2 * 1024 * 1024;
@@ -18,8 +20,8 @@ export const donationFormSchema = z.object({
     .min(2, "Name must be at least 2 characters.")
     .max(64, "Name is too long, keep it to 64 characters.")
     .regex(
-      /^[A-Za-z0-9\-_ ]+$/,
-      "Name must only include alphanumeric characters, -, _, and spaces."
+      /^[A-Za-z0-9\-_. ]+$/,
+      "Name must only include alphanumeric characters, -, _, ., and spaces."
     )
     .trim()
     .transform((name) => name.replace(/\s+/g, " ")),
@@ -68,5 +70,5 @@ export const donationFormSchema = z.object({
 
   amount: z
     .number({ coerce: true })
-    .min(1, "You can only donate a minimum of P1"),
+    .min(1, "You can only donate a minimum of P1.00"),
 });
