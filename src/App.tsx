@@ -1,4 +1,9 @@
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  Outlet,
+  RouterProvider,
+} from "react-router-dom";
 
 import { BackgroundLayout, MainLayout } from "@/layouts";
 import { Donate } from "@/pages/Donate";
@@ -37,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "donate",
         element: <Donate />,
+      },
+      {
+        path: "*",
+        element: <Navigate to="/" />,
       },
     ],
   },
