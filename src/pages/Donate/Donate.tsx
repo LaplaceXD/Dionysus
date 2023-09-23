@@ -37,7 +37,7 @@ function Donate() {
       },
       {
         pending: "Tossing a coin...",
-        success: "Coin was received. Thank you! 👌",
+        success: "Thank you, Witcher! 👌",
         error: "Coin was not received. 😭",
       }
     );
